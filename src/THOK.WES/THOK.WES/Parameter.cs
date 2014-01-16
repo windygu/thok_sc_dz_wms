@@ -10,13 +10,13 @@ namespace THOK.WES
 {
     public class Parameter: BaseObject
     {
-        private string url;
-        [CategoryAttribute("[01] 作业任务服务器地址"), DescriptionAttribute("作业任务服务器地址"), Chinese("作业任务服务器地址")]
-        public string Url
-        {
-            get { return url; }
-            set { url = value; }
-        }
+        //private string url;
+        //[CategoryAttribute("[01] 作业任务服务器地址"), DescriptionAttribute("作业任务服务器地址"), Chinese("作业任务服务器地址")]
+        //public string Url
+        //{
+        //    get { return url; }
+        //    set { url = value; }
+        //}
 
         int _comboBoxItems = 0;
         [Category("[02] 设备类型"), Description("设备"), TypeConverter(typeof(PropertyGridComboBoxItem)), Chinese("设备类型")]

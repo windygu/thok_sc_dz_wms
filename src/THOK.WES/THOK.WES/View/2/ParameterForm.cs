@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using THOK.Util;
 using THOK.ParamUtil;
 using THOK.WES.Dal;
 
@@ -30,8 +29,8 @@ namespace THOK.WES.View
 
         private void ReadParameter()
         {
-            url = configUtil.GetConfig("URL");
-            parameter.Url = url["URL"];
+            //url = configUtil.GetConfig("URL");
+            //parameter.Url = url["URL"];
 
             udp = configUtil.GetConfig("UDP");
             //parameter.UdpIP = udp["IP"];
@@ -60,8 +59,8 @@ namespace THOK.WES.View
         {
             try
             {
-                url["URL"] = parameter.Url;
-                configUtil.SaveConfig("URL", url);
+                //url["URL"] = parameter.Url;
+                //configUtil.SaveConfig("URL", url);
 
                 //udp["IP"] = parameter.UdpIP;
                 //udp["PORT"] = parameter.UdpPort;

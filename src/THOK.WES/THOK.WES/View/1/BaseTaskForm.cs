@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using THOK.WES.Dal;
 using THOK.WES;
 using System.Collections;
-using SignalR.Client;
 using System.Threading;
 
 namespace THOK.WES.View
@@ -55,7 +54,7 @@ namespace THOK.WES.View
         /// </summary>
         private string port;
 
-        private Connection connection = null;
+       
         private WaveData wave = new WaveData();
         List<string> listBill = null;//∂¡»°∂©µ•∫≈
         public BaseTaskForm()
@@ -68,8 +67,7 @@ namespace THOK.WES.View
             pnlChart.Dock = DockStyle.Fill;
                  
             url = configUtil.GetConfig("URL")["URL"];          
-            UseRfid = configUtil.GetConfig("RFID")["USEDRFID"];           
-            connection = new Connection(url + @"/automotiveSystems");
+            UseRfid = configUtil.GetConfig("RFID")["USEDRFID"];
             port = configUtil.GetConfig("RFID")["PORT"];
             if (configUtil.GetConfig("DeviceType")["Device"] == "0")
             {

@@ -52,63 +52,38 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CheckBoxComboBox">
-      <HintPath>..\@Debug\CheckBoxComboBox.dll</HintPath>
-    </Reference>
     <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DataGridViewAutoFilter.dll</HintPath>
+      <HintPath>..\..\..\lib\DataGridViewAutoFilter.dll</HintPath>
     </Reference>
-    <Reference Include="IBM.Data.DB2, Version=9.0.0.2, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=x86" />
     <Reference Include="Intermec.DataCollection.RFID.AdvancedBRI">
-      <HintPath>..\THOK.WES.App\bin\Debug\Intermec.DataCollection.RFID.AdvancedBRI.dll</HintPath>
+      <HintPath>..\..\..\lib\Intermec.DataCollection.RFID.AdvancedBRI.dll</HintPath>
     </Reference>
     <Reference Include="Intermec.DataCollection.RFID.BasicBRI">
-      <HintPath>..\THOK.WES.App\bin\Debug\Intermec.DataCollection.RFID.BasicBRI.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.9\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenNETCF.Desktop.Communication, Version=2.9.2759.1856, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\OpenNETCF.Desktop.Communication.dll</HintPath>
-    </Reference>
-    <Reference Include="SignalR.Client">
-      <HintPath>..\packages\SignalR.Client.0.5.3\lib\net40\SignalR.Client.dll</HintPath>
+      <HintPath>..\..\..\lib\Intermec.DataCollection.RFID.BasicBRI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="THOK.AF.Menus">
+      <HintPath>..\..\..\lib\THOK.AF.Menus.dll</HintPath>
+    </Reference>
     <Reference Include="THOK.AF.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\THOK.AF.View.dll</HintPath>
+      <HintPath>..\..\..\lib\THOK.AF.View.dll</HintPath>
     </Reference>
     <Reference Include="THOK.ParamUtil, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\THOK.ParamUtil.dll</HintPath>
-    </Reference>
-    <Reference Include="THOK.UDP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\THOK.UDP.dll</HintPath>
-    </Reference>
-    <Reference Include="THOK.Util, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\THOK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="XPExplorerBar, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\XPExplorerBar.dll</HintPath>
+      <HintPath>..\..\..\lib\THOK.ParamUtil.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dal\FileUtil.cs" />
-    <Compile Include="Rfid\CCommondMethod.cs" />
     <Compile Include="Dal\ConfigUtil.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Rfid\MessageTran.cs" />
     <Compile Include="Parameter.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -225,8 +200,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="packages.config" />
     <None Include="Resources\accept.png" />
   </ItemGroup>
   <ItemGroup>
