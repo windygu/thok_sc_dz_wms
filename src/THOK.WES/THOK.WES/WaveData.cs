@@ -155,7 +155,7 @@ namespace THOK.WES
                 string xml = System.Text.Encoding.GetEncoding("GB2312").GetString(data);
                
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[订单数据][" + DateTime.Now + "]:" + xml);
-                ds = ParseData(xml, ds, orderId);
+                ds = ParseData(xml, ds);
             }
             catch (Exception e)
             {
@@ -254,7 +254,7 @@ namespace THOK.WES
             DataSet ds = GenerateEmptyTables();
             try
             {
-                doc.Load("单据.xml");
+                doc.Load(xml);
                 if (doc.GetElementsByTagName("bb_result_info")[0].InnerText == "1")
                 {
                     foreach (XmlNode billdata in doc.GetElementsByTagName("data"))
@@ -279,12 +279,12 @@ namespace THOK.WES
             return list;
         }
 
-        private DataSet ParseData(string xml, DataSet ds,string orderId)
+        private DataSet ParseData(string xml, DataSet ds)
         {
             XmlDocument doc = new XmlDocument();
             try
             {
-                doc.Load(orderId + ".xml");
+                doc.Load(xml);
                 foreach (XmlNode billNode in doc.GetElementsByTagName("head"))
                 {
                     foreach (XmlNode detailNode in doc.GetElementsByTagName("data"))
@@ -327,7 +327,7 @@ namespace THOK.WES
         private string ParseMsg(string xml)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("返回.xml");
+            doc.Load(xml);
             return doc.GetElementsByTagName("state_desc")[0].InnerText;
         }
 
