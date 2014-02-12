@@ -29,9 +29,9 @@ namespace THOK.WES.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.sslBillID = new System.Windows.Forms.ToolStripStatusLabel();
             this.sslOperator = new System.Windows.Forms.ToolStripStatusLabel();
@@ -65,6 +65,7 @@ namespace THOK.WES.View
             this.btnScanning = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnOpType = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
@@ -79,6 +80,7 @@ namespace THOK.WES.View
             // pnlTool
             // 
             this.pnlTool.Controls.Add(this.btnExit);
+            this.pnlTool.Controls.Add(this.btnOpType);
             this.pnlTool.Controls.Add(this.btnConfirm);
             this.pnlTool.Controls.Add(this.btnSearch);
             this.pnlTool.Controls.Add(this.btnScanning);
@@ -134,17 +136,17 @@ namespace THOK.WES.View
             this.dgvMain.AllowUserToAddRows = false;
             this.dgvMain.AllowUserToDeleteRows = false;
             this.dgvMain.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dgvMain.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgvMain.ColumnHeadersHeight = 22;
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bb_order_id,
@@ -166,14 +168,14 @@ namespace THOK.WES.View
             this.bb_type,
             this.bb_corporation_id,
             this.bb_corporation_name});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMain.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("宋体", 9F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMain.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMain.Location = new System.Drawing.Point(0, 132);
             this.dgvMain.MultiSelect = false;
@@ -432,15 +434,30 @@ namespace THOK.WES.View
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // btnOpType
+            // 
+            this.btnOpType.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOpType.Image = global::THOK.WES.Properties.Resources.onebit_10;
+            this.btnOpType.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnOpType.Location = new System.Drawing.Point(143, 0);
+            this.btnOpType.Name = "btnOpType";
+            this.btnOpType.Size = new System.Drawing.Size(48, 44);
+            this.btnOpType.TabIndex = 22;
+            this.btnOpType.Text = "正常";
+            this.btnOpType.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOpType.UseVisualStyleBackColor = true;
+            this.btnOpType.Visible = false;
+            this.btnOpType.Click += new System.EventHandler(this.btnOpType_Click);
+            // 
             // btnExit
             // 
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnExit.Image = global::THOK.WES.Properties.Resources.shut_down;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExit.Location = new System.Drawing.Point(143, 0);
+            this.btnExit.Location = new System.Drawing.Point(191, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(48, 44);
-            this.btnExit.TabIndex = 21;
+            this.btnExit.TabIndex = 23;
             this.btnExit.Text = "退出";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.UseVisualStyleBackColor = true;
@@ -502,9 +519,10 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_corporation_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_corporation_name;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnConfirm;
         protected System.Windows.Forms.Button btnSearch;
         protected System.Windows.Forms.Button btnScanning;
+        protected System.Windows.Forms.Button btnOpType;
+        private System.Windows.Forms.Button btnExit;
     }
 }

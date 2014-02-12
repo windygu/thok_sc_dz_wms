@@ -54,6 +54,11 @@ namespace THOK.WES.View
         /// </summary>
         private string port;
 
+        /// <summary>
+        /// Real: 实时出库；NoReal: 非实时出库；
+        /// </summary>
+        private string OperateType = "";
+
        
         private WaveData wave = new WaveData();
         List<string> listBill = null;//读取订单号
@@ -342,6 +347,19 @@ namespace THOK.WES.View
             }
         }
 
+        private void btnOpType_Click(object sender, EventArgs e)
+        {
+            if (btnOpType.Text != "正常")
+            {
+                btnOpType.Text = "正常";
+                OperateType = "NoReal";
+            }
+            else
+            {
+                btnOpType.Text = "实时";
+                OperateType = "Real";
+            }
+        }
     }
 }
 
