@@ -353,6 +353,8 @@ namespace THOK.WES.View
             {
                 btnOpType.Text = "Õý³£";
                 OperateType = "NoReal";
+
+                dgvMain.DataSource = wave.ImportData(BillString, billNo).Tables["DETAIL"];
             }
             else
             {
@@ -360,7 +362,7 @@ namespace THOK.WES.View
                 OperateType = "Real";
 
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-                timer.Interval = 1000;//1Ãë1´Î
+                timer.Interval = 1000;
                 timer.Tick += new EventHandler(CyleTimer_Tick);
                 timer.Start();
             }
@@ -393,22 +395,21 @@ namespace THOK.WES.View
             dgvMain.DataSource = null;
 
             DataTable dt = null;
-            DataTable dt1 = this.GetStockOut();// wave.ImportData(BillString, billNo).Tables["DETAIL"];
-            DataTable dt2 = this.GetStockOut();
-            if (dt2.Rows.Count > 0)
+            DataTable dtLc = this.GetTest();// wave.ImportData(BillString, billNo).Tables["DETAIL"];
+            DataTable dtStockOut = this.GetStockOut();
+            if (dtStockOut.Rows.Count > 0 && dtLc.Rows.Count > 0)
             {
-                string codeList = this.MakeString(dt2, "CIGARETTECODE");             
-                if (dt1.Rows.Count > 0)
-                {
-                    dt = new DataTable();
+                string codeList = this.MakeString(dtStockOut, "CIGARETTECODE");
+                dt = new DataTable();
+                dt.Columns.Add("CIGARETTECODE", typeof(string));
+                dt.Columns.Add("QUANTITY", typeof(Int32));
 
-                    foreach (DataRow row in dt2.Rows)
+                foreach (DataRow row in dtStockOut.Rows)
+                {
+                    DataRow[] row_2 = dtLc.Select("CIGARETTECODE IN (" + row["CIGARETTECODE"] + ")");
+                    if (row_2.Length > 0)
                     {
-                        DataRow[] row2 = dt1.Select("CIGARETTECODE in(" + row["CIGARETTECODE"] + ")");
-                        if (row2.Length > 0)
-                        {
-                            dt.Rows.Add(row2[0]);
-                        }
+                        dt.Rows.Add(row_2[0].ItemArray);
                     }
                 }
                 dgvMain.DataSource = dt;
@@ -424,6 +425,32 @@ namespace THOK.WES.View
                     this.btnOpType.Text = DateTime.Now.ToString("mm:ss");
                 }
             }
+        }
+        private DataTable GetTest()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CIGARETTECODE", typeof(string));
+            dt.Columns.Add("QUANTITY", typeof(Int32));
+
+            DataRow dr1 = dt.NewRow();
+            dr1["CIGARETTECODE"] = "5301043";
+            dr1["QUANTITY"] = "10";
+            DataRow dr2 = dt.NewRow();
+            dr2["CIGARETTECODE"] = "5301043";
+            dr2["QUANTITY"] = "20";
+            DataRow dr3 = dt.NewRow();
+            dr3["CIGARETTECODE"] = "3101009";
+            dr3["QUANTITY"] = "30";
+            DataRow dr4 = dt.NewRow();
+            dr4["CIGARETTECODE"] = "3101009";
+            dr4["QUANTITY"] = "40";
+
+            dt.Rows.Add(dr1);
+            dt.Rows.Add(dr2);
+            dt.Rows.Add(dr3);
+            dt.Rows.Add(dr4);
+
+            return dt;
         }
     }
 }
