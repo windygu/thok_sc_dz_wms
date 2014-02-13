@@ -63,6 +63,7 @@
       <HintPath>..\..\..\lib\Intermec.DataCollection.RFID.BasicBRI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -84,6 +85,7 @@
     <Compile Include="Dal\ConfigUtil.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dal\SQLHelper.cs" />
     <Compile Include="Parameter.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

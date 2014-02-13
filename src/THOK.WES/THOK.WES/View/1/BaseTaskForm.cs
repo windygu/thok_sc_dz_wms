@@ -358,6 +358,71 @@ namespace THOK.WES.View
             {
                 btnOpType.Text = "实时";
                 OperateType = "Real";
+
+                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                timer.Interval = 1000;//1秒1次
+                timer.Tick += new EventHandler(CyleTimer_Tick);
+                timer.Start();
+            }
+        }
+
+        /// <summary>获得出库剩余的烟量</summary>
+        private DataTable GetStockOut()
+        { 
+            DataTable dt = new DataTable();
+            string sql = @"SELECT CIGARETTECODE,COUNT(CIGARETTECODE) FROM AS_STOCK_OUT WHERE STATE=0
+                           GROUP BY CIGARETTECODE HAVING count(*)<10";
+            dt = SQLHelper.GetDataTable(sql);
+            return dt;
+        }
+        /// <summary>处理字符串，取得字符，传来的String</summary>
+        private string MakeString(DataTable dt, string field)
+        {
+            string list = "''";
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    list += ",'" + row["" + field + ""].ToString() + "'";
+                }
+            }
+            return list;
+        }
+        private void Real()
+        {
+            dgvMain.DataSource = null;
+
+            DataTable dt = null;
+            DataTable dt1 = this.GetStockOut();// wave.ImportData(BillString, billNo).Tables["DETAIL"];
+            DataTable dt2 = this.GetStockOut();
+            if (dt2.Rows.Count > 0)
+            {
+                string codeList = this.MakeString(dt2, "CIGARETTECODE");             
+                if (dt1.Rows.Count > 0)
+                {
+                    dt = new DataTable();
+
+                    foreach (DataRow row in dt2.Rows)
+                    {
+                        DataRow[] row2 = dt1.Select("CIGARETTECODE in(" + row["CIGARETTECODE"] + ")");
+                        if (row2.Length > 0)
+                        {
+                            dt.Rows.Add(row2[0]);
+                        }
+                    }
+                }
+                dgvMain.DataSource = dt;
+            }
+        }
+        private void CyleTimer_Tick(object sender, EventArgs e)
+        {
+            if (OperateType == "Real")
+            {
+                if (BillTypes == "4")
+                {
+                    this.Real();
+                    this.btnOpType.Text = DateTime.Now.ToString("mm:ss");
+                }
             }
         }
     }
