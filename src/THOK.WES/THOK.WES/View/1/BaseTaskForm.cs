@@ -328,7 +328,7 @@ namespace THOK.WES.View
                 if (BillTypes == "1")
                 {
                     this.getRfidCode();
-                    string brandInfo = "111";// getBrandInfo();//¾íÑÌÂë¶Î
+                    string brandInfo = this.getBrandInfo();//¾íÑÌÂë¶Î
                     if (brandInfo != "" && RfidCode != "")
                     {
                         wave.wmsPalletInfo(RfidCode, "", "¶ÁÐ´ÌìÏß±àºÅ", Environment.UserName);
