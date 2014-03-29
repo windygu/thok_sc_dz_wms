@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://10.89.128.22:9080/L3/services/WarehouseOperationService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://10.89.128.22:9080/L3/services/WarehouseOperationService" targetNamespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="StockTakeConfirmResponse">
+    <wsdl:part name="StockTakeConfirmReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="ScanNewBillRequest" />
+  <wsdl:message name="HitShelfConfirmRequest">
+    <wsdl:part name="Param" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockOutConfirmRequest">
+    <wsdl:part name="Param" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="HitShelfConfirmSJResponse">
+    <wsdl:part name="HitShelfConfirmSJReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockTakeConfirmRequest">
+    <wsdl:part name="Param" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="HitShelfConfirmSJRequest">
+    <wsdl:part name="Param" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockMoveResponse">
+    <wsdl:part name="StockMoveReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockMoveRequest">
+    <wsdl:part name="storeMoveId" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockOutConfirmResponse">
+    <wsdl:part name="StockOutConfirmReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="HitShelfConfirmResponse">
+    <wsdl:part name="HitShelfConfirmReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="ScanNewBillResponse">
+    <wsdl:part name="ScanNewBillReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockMoveConfirmRequest">
+    <wsdl:part name="Param" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockOutRequest">
+    <wsdl:part name="storeOutId" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockTakeRequest">
+    <wsdl:part name="checkNum" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockTakeResponse">
+    <wsdl:part name="StockTakeReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="HitShelfRequest">
+    <wsdl:part name="voucherNum" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="HitShelfResponse">
+    <wsdl:part name="HitShelfReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockOutResponse">
+    <wsdl:part name="StockOutReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="StockMoveConfirmResponse">
+    <wsdl:part name="StockMoveConfirmReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:portType name="WarehouseOperationService">
+    <wsdl:operation name="ScanNewBill">
+      <wsdl:input name="ScanNewBillRequest" message="impl:ScanNewBillRequest" />
+      <wsdl:output name="ScanNewBillResponse" message="impl:ScanNewBillResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HitShelf" parameterOrder="voucherNum">
+      <wsdl:input name="HitShelfRequest" message="impl:HitShelfRequest" />
+      <wsdl:output name="HitShelfResponse" message="impl:HitShelfResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HitShelfConfirm" parameterOrder="Param">
+      <wsdl:input name="HitShelfConfirmRequest" message="impl:HitShelfConfirmRequest" />
+      <wsdl:output name="HitShelfConfirmResponse" message="impl:HitShelfConfirmResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HitShelfConfirmSJ" parameterOrder="Param">
+      <wsdl:input name="HitShelfConfirmSJRequest" message="impl:HitShelfConfirmSJRequest" />
+      <wsdl:output name="HitShelfConfirmSJResponse" message="impl:HitShelfConfirmSJResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockTake" parameterOrder="checkNum">
+      <wsdl:input name="StockTakeRequest" message="impl:StockTakeRequest" />
+      <wsdl:output name="StockTakeResponse" message="impl:StockTakeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockTakeConfirm" parameterOrder="Param">
+      <wsdl:input name="StockTakeConfirmRequest" message="impl:StockTakeConfirmRequest" />
+      <wsdl:output name="StockTakeConfirmResponse" message="impl:StockTakeConfirmResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockMove" parameterOrder="storeMoveId">
+      <wsdl:input name="StockMoveRequest" message="impl:StockMoveRequest" />
+      <wsdl:output name="StockMoveResponse" message="impl:StockMoveResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockMoveConfirm" parameterOrder="Param">
+      <wsdl:input name="StockMoveConfirmRequest" message="impl:StockMoveConfirmRequest" />
+      <wsdl:output name="StockMoveConfirmResponse" message="impl:StockMoveConfirmResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockOut" parameterOrder="storeOutId">
+      <wsdl:input name="StockOutRequest" message="impl:StockOutRequest" />
+      <wsdl:output name="StockOutResponse" message="impl:StockOutResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StockOutConfirm" parameterOrder="Param">
+      <wsdl:input name="StockOutConfirmRequest" message="impl:StockOutConfirmRequest" />
+      <wsdl:output name="StockOutConfirmResponse" message="impl:StockOutConfirmResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WarehouseOperationServiceSoapBinding" type="impl:WarehouseOperationService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ScanNewBill">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="ScanNewBillRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="ScanNewBillResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HitShelf">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="HitShelfRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="HitShelfResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HitShelfConfirm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="HitShelfConfirmRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="HitShelfConfirmResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HitShelfConfirmSJ">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="HitShelfConfirmSJRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="HitShelfConfirmSJResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockTake">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockTakeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockTakeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockTakeConfirm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockTakeConfirmRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockTakeConfirmResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockMove">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockMoveRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockMoveResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockMoveConfirm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockMoveConfirmRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockMoveConfirmResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockOut">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockOutRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockOutResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StockOutConfirm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="StockOutConfirmRequest">
+        <wsdlsoap:body use="encoded" namespace="http://chinasofti.webItfc.l3.lc.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="StockOutConfirmResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.89.128.22:9080/L3/services/WarehouseOperationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WarehouseOperationServiceService">
+    <wsdl:port name="WarehouseOperationService" binding="impl:WarehouseOperationServiceSoapBinding">
+      <wsdlsoap:address location="http://10.89.128.22:9080/L3/services/WarehouseOperationService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -118,18 +118,34 @@ namespace THOK.WES
         /// <param name="billString">查询方法名</param>
         /// <param name="billType">订单类型</param>
         /// <returns>返回单据集合</returns>
-        public List<string> ScanNewBill(string billString,string billType)
+        //public List<string> ScanNewBill(string billString,string billType)
+        //{
+        //    List<string> list = new List<string>();
+        //    try
+        //    {
+        //        url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/ScanNewBill";
+        //        WebClient client = new WebClient();
+        //        byte[] data = client.DownloadData(url);
+        //        string xml = System.Text.Encoding.GetEncoding("GB2312").GetString(data);
+               
+        //        file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[单号数据][" + DateTime.Now + "]:" + xml);
+        //        list = ParsDateBill(xml, billType, list);               
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        THOKUtil.ShowError("从浪潮下载数据出错，原因：" + e.Message);
+        //    }
+        //    return list;
+        //}
+        public List<string> ScanNewBill(string billString, string billType)
         {
             List<string> list = new List<string>();
             try
             {
-                url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/ScanNewBill";
-                WebClient client = new WebClient();
-                byte[] data = client.DownloadData(url);
-                string xml = System.Text.Encoding.GetEncoding("GB2312").GetString(data);
-               
+                DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
+                string xml = ops.ScanNewBill();
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[单号数据][" + DateTime.Now + "]:" + xml);
-                list = ParsDateBill(xml, billType, list);               
+                list = ParsDateBill(xml, billType, list);   
             }
             catch (Exception e)
             {
@@ -144,16 +160,33 @@ namespace THOK.WES
         /// <param name="billString">方法名</param>
         /// <param name="orderId">订单号</param>
         /// <returns>返回数据表集合</returns>
+        //public DataSet ImportData(string billString, string orderId)
+        //{
+        //    DataSet ds = GenerateEmptyTables();
+        //    try
+        //    {
+        //        url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + billString + "?orderID=" + orderId;
+        //        WebClient client = new WebClient();
+        //        byte[] data = client.DownloadData(url);
+        //        string xml = System.Text.Encoding.GetEncoding("GB2312").GetString(data);
+               
+        //        file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[订单数据][" + DateTime.Now + "]:" + xml);
+        //        ds = ParseData(xml, ds);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        THOKUtil.ShowError("从浪潮下载数据出错，原因：" + e.Message);
+        //    }
+        //    return ds;
+        //}
         public DataSet ImportData(string billString, string orderId)
         {
             DataSet ds = GenerateEmptyTables();
             try
             {
-                url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + billString + "?orderID=" + orderId;
-                WebClient client = new WebClient();
-                byte[] data = client.DownloadData(url);
-                string xml = System.Text.Encoding.GetEncoding("GB2312").GetString(data);
-               
+                DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
+                string xml = ops.HitShelf(orderId);
+
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[订单数据][" + DateTime.Now + "]:" + xml);
                 ds = ParseData(xml, ds);
             }
@@ -170,6 +203,28 @@ namespace THOK.WES
         /// <param name="dataTable">完成的数据</param>
         /// <param name="returnString">完成的方法名</param>
         /// <returns>返回提示消息</returns>
+        //public string confirmData(DataTable dataTable, string returnString)
+        //{
+        //    string stateDesc = string.Empty;
+        //    if (dataTable.Rows.Count > 0)
+        //    {
+        //        foreach (DataRow row in dataTable.Rows)
+        //        {
+        //            url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + returnString + "?xmlData=";
+        //            url += string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
+        //                row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
+        //                row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],
+        //                row["bb_inventory_num"], row["bb_unit"], row["bb_operator_name"], row["bb_operate_date"]);
+        //            WebClient client = new WebClient();
+        //            byte[] data = client.DownloadData(url);
+        //            string xml = System.Text.Encoding.GetEncoding("GBK").GetString(data);
+                   
+        //            file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
+        //            stateDesc = ParseMsg(xml);
+        //        }
+        //    }
+        //    return stateDesc;
+        //}
         public string confirmData(DataTable dataTable, string returnString)
         {
             string stateDesc = string.Empty;
@@ -177,15 +232,15 @@ namespace THOK.WES
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + returnString + "?xmlData=";
-                    url += string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
+                    DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
+                    //url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + returnString + "?xmlData=";
+                    url = string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
                         row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
                         row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],
                         row["bb_inventory_num"], row["bb_unit"], row["bb_operator_name"], row["bb_operate_date"]);
-                    WebClient client = new WebClient();
-                    byte[] data = client.DownloadData(url);
-                    string xml = System.Text.Encoding.GetEncoding("GBK").GetString(data);
-                   
+
+                    string xml = ops.HitShelfConfirm(url);
+
                     file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
                     stateDesc = ParseMsg(xml);
                 }
@@ -254,7 +309,7 @@ namespace THOK.WES
             DataSet ds = GenerateEmptyTables();
             try
             {
-                doc.Load(xml);
+                doc.LoadXml(xml);
                 if (doc.GetElementsByTagName("bb_result_info")[0].InnerText == "1")
                 {
                     foreach (XmlNode billdata in doc.GetElementsByTagName("data"))
@@ -284,7 +339,7 @@ namespace THOK.WES
             XmlDocument doc = new XmlDocument();
             try
             {
-                doc.Load(xml);
+                doc.LoadXml(xml);
                 foreach (XmlNode billNode in doc.GetElementsByTagName("head"))
                 {
                     foreach (XmlNode detailNode in doc.GetElementsByTagName("data"))
@@ -327,7 +382,7 @@ namespace THOK.WES
         private string ParseMsg(string xml)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(xml);
+            doc.LoadXml(xml);
             return doc.GetElementsByTagName("state_desc")[0].InnerText;
         }
 

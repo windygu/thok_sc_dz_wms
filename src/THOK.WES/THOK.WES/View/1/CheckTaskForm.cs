@@ -15,7 +15,6 @@ namespace THOK.WES.View
             InitializeComponent();         
             BillTypes = "2";
             BillString = "StockTake";
-            this.btnScanning.Visible = false;
             ReturnString = "StockTakeConfirm";
         }
     }

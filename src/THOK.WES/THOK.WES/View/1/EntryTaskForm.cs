@@ -15,7 +15,6 @@ namespace THOK.WES.View
             InitializeComponent();
             BillTypes = "1";
             BillString = "HitShelf";
-            this.btnScanning.Visible = false;
             ReturnString = "HitShelfConfirm";
         }
     }

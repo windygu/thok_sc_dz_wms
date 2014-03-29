@@ -29,9 +29,9 @@ namespace THOK.WES.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.sslBillID = new System.Windows.Forms.ToolStripStatusLabel();
             this.sslOperator = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,7 +62,6 @@ namespace THOK.WES.View
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlData = new System.Windows.Forms.Panel();
-            this.btnScanning = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnOpType = new System.Windows.Forms.Button();
@@ -83,7 +82,6 @@ namespace THOK.WES.View
             this.pnlTool.Controls.Add(this.btnOpType);
             this.pnlTool.Controls.Add(this.btnConfirm);
             this.pnlTool.Controls.Add(this.btnSearch);
-            this.pnlTool.Controls.Add(this.btnScanning);
             this.pnlTool.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTool.Size = new System.Drawing.Size(804, 46);
             // 
@@ -117,13 +115,13 @@ namespace THOK.WES.View
             // sslBillID
             // 
             this.sslBillID.Name = "sslBillID";
-            this.sslBillID.Size = new System.Drawing.Size(53, 17);
+            this.sslBillID.Size = new System.Drawing.Size(56, 17);
             this.sslBillID.Text = "单据号：";
             // 
             // sslOperator
             // 
             this.sslOperator.Name = "sslOperator";
-            this.sslOperator.Size = new System.Drawing.Size(53, 17);
+            this.sslOperator.Size = new System.Drawing.Size(56, 17);
             this.sslOperator.Text = "操作员：";
             // 
             // CyleTimer
@@ -135,17 +133,17 @@ namespace THOK.WES.View
             this.dgvMain.AllowUserToAddRows = false;
             this.dgvMain.AllowUserToDeleteRows = false;
             this.dgvMain.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMain.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMain.ColumnHeadersHeight = 22;
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bb_order_id,
@@ -167,14 +165,14 @@ namespace THOK.WES.View
             this.bb_type,
             this.bb_corporation_id,
             this.bb_corporation_name});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("宋体", 9F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMain.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMain.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMain.Location = new System.Drawing.Point(0, 132);
             this.dgvMain.MultiSelect = false;
@@ -391,26 +389,12 @@ namespace THOK.WES.View
             this.pnlData.Size = new System.Drawing.Size(804, 132);
             this.pnlData.TabIndex = 3;
             // 
-            // btnScanning
-            // 
-            this.btnScanning.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnScanning.Image = global::THOK.WES.Properties.Resources.onebit_02;
-            this.btnScanning.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnScanning.Location = new System.Drawing.Point(0, 0);
-            this.btnScanning.Name = "btnScanning";
-            this.btnScanning.Size = new System.Drawing.Size(47, 44);
-            this.btnScanning.TabIndex = 16;
-            this.btnScanning.Text = "扫描";
-            this.btnScanning.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnScanning.UseVisualStyleBackColor = true;
-            this.btnScanning.Click += new System.EventHandler(this.btnScanning_Click);
-            // 
             // btnSearch
             // 
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSearch.Image = global::THOK.WES.Properties.Resources.onebit_02;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSearch.Location = new System.Drawing.Point(47, 0);
+            this.btnSearch.Location = new System.Drawing.Point(0, 0);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(48, 44);
             this.btnSearch.TabIndex = 19;
@@ -424,7 +408,7 @@ namespace THOK.WES.View
             this.btnConfirm.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnConfirm.Image = global::THOK.WES.Properties.Resources.accept;
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConfirm.Location = new System.Drawing.Point(95, 0);
+            this.btnConfirm.Location = new System.Drawing.Point(48, 0);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(48, 44);
             this.btnConfirm.TabIndex = 20;
@@ -438,7 +422,7 @@ namespace THOK.WES.View
             this.btnOpType.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnOpType.Image = global::THOK.WES.Properties.Resources.onebit_10;
             this.btnOpType.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpType.Location = new System.Drawing.Point(143, 0);
+            this.btnOpType.Location = new System.Drawing.Point(96, 0);
             this.btnOpType.Name = "btnOpType";
             this.btnOpType.Size = new System.Drawing.Size(48, 44);
             this.btnOpType.TabIndex = 22;
@@ -453,7 +437,7 @@ namespace THOK.WES.View
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnExit.Image = global::THOK.WES.Properties.Resources.shut_down;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExit.Location = new System.Drawing.Point(191, 0);
+            this.btnExit.Location = new System.Drawing.Point(144, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(48, 44);
             this.btnExit.TabIndex = 23;
@@ -519,7 +503,6 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_corporation_name;
         private System.Windows.Forms.Button btnConfirm;
         protected System.Windows.Forms.Button btnSearch;
-        protected System.Windows.Forms.Button btnScanning;
         protected System.Windows.Forms.Button btnOpType;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Timer CyleTimer;

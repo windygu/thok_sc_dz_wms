@@ -107,7 +107,6 @@ namespace THOK.WES.View
         {
             try
             {
-                btnScanning_Click(null, null);
                 ClosePlWailt();
                 listBill = wave.ScanNewBill("ScanNewBill", BillTypes);
                 switch (listBill.Count)
@@ -143,13 +142,14 @@ namespace THOK.WES.View
             {
                 try
                 {
+                    ScanningRFID();
+
                     DataSet ds = GenerateEmptyTables();
                     DisplayPlWailt();
                     foreach (DataGridViewRow row in dgvMain.SelectedRows)
                     {
                         DataRow detailRow = ds.Tables["DETAIL"].NewRow();
                         //主表信息
-
                         detailRow["bb_result_info"] = "0";
                         detailRow["bb_type"] = BillString;
                         detailRow["bb_order_id"] = row.Cells["bb_order_id"].Value.ToString();
@@ -158,7 +158,6 @@ namespace THOK.WES.View
                         detailRow["bb_confirm_date"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         detailRow["bb_corporation_id"] = row.Cells["bb_corporation_id"].Value.ToString();
                         detailRow["bb_corporation_name"] = row.Cells["bb_corporation_name"].Value.ToString();
-
                         //细表信息
                         detailRow["bb_detail_id"] = row.Cells["bb_detail_id"].Value.ToString();
                         detailRow["bb_operate_type"] = row.Cells["bb_operate_type"].Value.ToString();
@@ -180,13 +179,11 @@ namespace THOK.WES.View
                         {
                             if (BillTypes == "2")
                             {
-                                //detailRow["bb_handle_num"] = confirmForm.Piece;
                                 detailRow["bb_inventory_num"] = confirmForm.Piece;
                             }
                         }
                         ds.Tables["DETAIL"].Rows.Add(detailRow);
                     }
-
                     THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"], ReturnString));
                     ClosePlWailt();
                 }
@@ -321,23 +318,13 @@ namespace THOK.WES.View
             return ds;
         }
 
-        private void btnScanning_Click(object sender, EventArgs e)
+        private void ScanningRFID()
         {
             try
             {
                 if (BillTypes == "1")
                 {
                     this.getRfidCode();
-                    string brandInfo = this.getBrandInfo();//卷烟码段
-                    if (brandInfo != "" && RfidCode != "")
-                    {
-                        wave.wmsPalletInfo(RfidCode, "", "读写天线编号", Environment.UserName);
-                    }
-                    else
-                    {
-                        THOKUtil.ShowError("扫描RFID读取失败！请从新扫描！");
-                        ClosePlWailt();
-                    }
                 }
             }
             catch (Exception ex)
