@@ -14,7 +14,7 @@ namespace THOK.WES.View
         {
             InitializeComponent();
             BillTypes = "1";
-            BillString = "HitShelf";
+            BillString = "HITSHELF";
             ReturnString = "HitShelfConfirm";
         }
     }

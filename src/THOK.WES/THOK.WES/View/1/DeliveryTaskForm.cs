@@ -13,9 +13,9 @@ namespace THOK.WES.View
         public DeliveryTaskForm()
         {
             InitializeComponent();
-            BillTypes= "4";
+            BillTypes= "5";
             this.btnOpType.Visible = true;
-            BillString = "StockOut";
+            BillString = "STOCKMOVE";
             ReturnString = "StockOutConfirm";
         }
     }

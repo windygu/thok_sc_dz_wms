@@ -145,16 +145,6 @@ namespace THOK.WES
             {
                 DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
                 string xml = ops.ScanNewBill();
-
-                //FileStream fs = new FileStream(@"D:\ScanNewBill.xml", FileMode.Create);
-                //StreamWriter sw = new StreamWriter(fs);
-                //sw.Write(xml);
-                //sw.Close();
-
-                //FileStream fs = File.OpenRead(@"E:\Photo\NG\IMG_0441.JPG");// 我没有你说的二进制文件，我就读个本地的照片，以二进制的方式读取的，所以这里你可以理解成你从下位机获取二进制流
-                //byte[] s = new byte[fs.Length]; // string.ToCharArray方法，其实我感觉你从下位机直接接收成char[] 更好
-                //fs.Read(s, 0, s.Length);// 这是将文件写入s，byte[] 和char[]你可以理解成是一样的，但是byte更好些，因为byte是uchar，char是有符号的，可能理解为负数
-                
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[单号数据][" + DateTime.Now + "]:" + xml);
                 list = ParsDateBill(xml, billType, list);   
             }
@@ -196,8 +186,22 @@ namespace THOK.WES
             try
             {
                 DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
-                string xml = ops.HitShelf(orderId);
-
+                string xml = "";
+                switch (billString)
+                {
+                    case "HITSHELF": //上架
+                        xml = ops.HitShelf(orderId); 
+                        break;
+                    case "STOCKTAKE": //盘点
+                        xml = ops.StockTake(orderId); 
+                        break;
+                    case "STOCKMOVE": //下架
+                        xml = ops.StockOut(orderId); 
+                        break;
+                    case "STOCKOUT": //移位
+                        xml = ops.StockMove(orderId); 
+                        break;
+                }
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[订单数据][" + DateTime.Now + "]:" + xml);
                 ds = ParseData(xml, ds);
             }
@@ -261,7 +265,7 @@ namespace THOK.WES
         //    }
         //    return stateDesc;
         //}
-        public void confirmData(DataTable dataTable)
+        public void confirmData(DataTable dataTable, string billType)
         {
             string stateDesc = string.Empty;
             if (dataTable.Rows.Count > 0)
@@ -269,11 +273,43 @@ namespace THOK.WES
                 foreach (DataRow row in dataTable.Rows)
                 {
                     DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
-                    url = string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
-                        row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
-                        row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],
-                        row["bb_inventory_num"], row["bb_unit"], row["bb_operator_name"], row["bb_operate_date"]);
-                    string xml = ops.HitShelfConfirm(url);
+                    url = string.Format(returnMsg, 
+                                        row["bb_result_info"], 
+                                        row["bb_type"], 
+                                        row["bb_order_id"], 
+                                        row["bb_pda_device_id"], 
+                                        row["bb_confirmor_name"], 
+                                        row["bb_confirm_date"],
+                                        row["bb_corporation_id"], 
+                                        row["bb_corporation_name"],
+                                        row["bb_detail_id"], 
+                                        row["bb_operate_type"],
+                                        row["bb_cargo_no"],
+                                        row["bb_pallet_no"], 
+                                        row["bb_pallet_move_flg"],
+                                        row["bb_brand_id"],
+                                        row["bb_brand_name"], 
+                                        row["bb_handle_num"],
+                                        row["bb_inventory_num"],
+                                        row["bb_unit"],
+                                        row["bb_operator_name"], 
+                                        row["bb_operate_date"]);
+                    string xml = "";
+                    switch (billType)
+                    {
+                        case "1": //上架单确认
+                            xml = ops.HitShelfConfirm(url); 
+                            break;
+                        case "2": //盘点单确认
+                            xml = ops.StockTakeConfirm(url); 
+                            break;
+                        case "3": //移位单确认
+                            xml = ops.StockMoveConfirm(url); 
+                            break;
+                        case "5": //下架单确认
+                            xml = ops.StockOutConfirm(url);
+                            break;
+                    }
                     file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
                 }
             }

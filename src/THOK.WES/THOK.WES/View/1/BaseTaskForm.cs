@@ -19,7 +19,7 @@ namespace THOK.WES.View
         private string url = @"http://59.61.87.212:8090/Task";
        
         /// <summary>
-        /// 1：入库单；2：盘点单；3：移库单；4：出库单
+        /// 1:上架清单,2:盘点清单,3:移位清单,4:并盘清单,5:下架清单
         /// </summary>
         protected string BillTypes = "";
         protected string BillString = "";
@@ -152,8 +152,8 @@ namespace THOK.WES.View
                     // 0:主储存区,1:零件烟区,2:零条烟区,
                     if (bb_area_type == "0")
                     {
-                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//ScanningRFID();//读取RFID
-                        getRFID = ScanningRFID();
+                        getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");
+                        //getRFID = ScanningRFID();//读取RFID
                     }
                 }
                 catch (Exception ex)
@@ -163,6 +163,7 @@ namespace THOK.WES.View
                 }
                 try
                 {
+
                     DataSet ds = GenerateEmptyTables();
                     DisplayPlWailt();
                     foreach (DataGridViewRow row in dgvMain.SelectedRows)
@@ -182,7 +183,14 @@ namespace THOK.WES.View
                         detailRow["bb_operate_type"] = row.Cells["bb_operate_type"].Value.ToString();
                         detailRow["bb_pallet_move_flg"] = row.Cells["bb_pallet_move_flg"].Value.ToString();
                         detailRow["bb_cargo_no"] = row.Cells["bb_cargo_no"].Value.ToString();
-                        detailRow["bb_pallet_no"] = getRFID;//此标签改为RFID传入值
+                        if (BillTypes == "1")
+                        {
+                            detailRow["bb_pallet_no"] = getRFID;//此标签改为RFID传入值
+                        }
+                        else
+                        {
+                            detailRow["bb_pallet_no"] = row.Cells["bb_pallet_no"].Value.ToString();
+                        }
                         detailRow["bb_brand_id"] = row.Cells["bb_brand_id"].Value.ToString();
                         detailRow["bb_brand_name"] = row.Cells["bb_brand_name"].Value.ToString();
                         detailRow["bb_handle_num"] = Convert.ToDecimal(row.Cells["bb_handle_num"].Value.ToString());
@@ -203,7 +211,21 @@ namespace THOK.WES.View
                             ds.Tables["DETAIL"].Rows.Add(detailRow);
                             try
                             {
-                                wave.confirmData(ds.Tables["DETAIL"]);
+                                if (BillTypes == "1")
+                                {
+                                    wave.confirmData(ds.Tables["DETAIL"], BillTypes);
+                                }
+                                else
+                                {
+                                    if (getRFID == detailRow["bb_pallet_no"].ToString() || detailRow["bb_pallet_no"].ToString() == "" || detailRow["bb_pallet_no"].ToString() == null)
+                                    {
+                                        wave.confirmData(ds.Tables["DETAIL"], BillTypes);
+                                    }
+                                    else
+                                    {
+                                        THOKUtil.ShowError("RFID不匹配！请选择正确的货位，重新出库！");
+                                    }
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -249,12 +271,15 @@ namespace THOK.WES.View
             {
                 dgvMain.DataSource = billTable;
                 InTask = false;
+                ClosePlWailt();
             }
             else
             {
                 dgvMain.DataSource = null;
+                InTask = false;
+                ClosePlWailt();
+                THOKUtil.ShowError("没有数据！");
             }
-            ClosePlWailt();
         }
 
         //读取RFID
@@ -349,10 +374,10 @@ namespace THOK.WES.View
         {
             try
             {
-                if (BillTypes == "1")
-                {
+                //if (BillTypes == "1")
+                //{
                     return this.getRfidCode();
-                }
+                //}
             }
             catch (Exception ex)
             {

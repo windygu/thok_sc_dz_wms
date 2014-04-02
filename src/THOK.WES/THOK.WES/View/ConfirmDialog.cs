@@ -47,8 +47,8 @@ namespace THOK.WES.View
 
         private void RefreshData()
         {
-            lblPiece.Text = piece.ToString();
-            lblItem.Text = item.ToString();
+            //lblPiece.Text = piece.ToString();
+            lblItem.Text = piece.ToString();
             label3.Text = "作业储位：" + this.storageName;
             label4.Text = "操作类型：" + this.operateName + (this.targetStorageName != ""?"->" + this.targetStorageName:""); 
             label5.Text = "卷烟名称：" + this.tobaccoName;
