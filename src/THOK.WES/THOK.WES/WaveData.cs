@@ -6,6 +6,7 @@ using THOK.WES.Dal;
 using System.Net;
 using System.Data;
 using System.Xml;
+using System.IO;
 
 namespace THOK.WES
 {
@@ -24,11 +25,11 @@ namespace THOK.WES
 	                                                <bb_result_info>{0}</bb_result_info>
 		                                            <bb_type>{1}</bb_type>
 		                                            <bb_order_id>{2}</bb_order_id>
-		                                            <bb_pda_device_id>{3}</ bb_pda_device_id >
+		                                            <bb_pda_device_id>{3}</bb_pda_device_id >
 		                                            <bb_confirmor_name>{4}</bb_confirmor_name>
 		                                            <bb_confirm_date>{5}</bb_confirm_date>
-		                                            <bb_corporation_id>{6}</ bb_corporation_id >
-		                                            <bb_corporation_name>{7}</ bb_corporation_name >
+		                                            <bb_corporation_id>{6}</bb_corporation_id >
+		                                            <bb_corporation_name>{7}</bb_corporation_name >
 	                                            </head>
                                                 <datalist>
 	                                                <data>
@@ -144,6 +145,16 @@ namespace THOK.WES
             {
                 DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
                 string xml = ops.ScanNewBill();
+
+                //FileStream fs = new FileStream(@"D:\ScanNewBill.xml", FileMode.Create);
+                //StreamWriter sw = new StreamWriter(fs);
+                //sw.Write(xml);
+                //sw.Close();
+
+                //FileStream fs = File.OpenRead(@"E:\Photo\NG\IMG_0441.JPG");// 我没有你说的二进制文件，我就读个本地的照片，以二进制的方式读取的，所以这里你可以理解成你从下位机获取二进制流
+                //byte[] s = new byte[fs.Length]; // string.ToCharArray方法，其实我感觉你从下位机直接接收成char[] 更好
+                //fs.Read(s, 0, s.Length);// 这是将文件写入s，byte[] 和char[]你可以理解成是一样的，但是byte更好些，因为byte是uchar，char是有符号的，可能理解为负数
+                
                 file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[单号数据][" + DateTime.Now + "]:" + xml);
                 list = ParsDateBill(xml, billType, list);   
             }
@@ -225,7 +236,7 @@ namespace THOK.WES
         //    }
         //    return stateDesc;
         //}
-        public string confirmData(DataTable dataTable, string returnString)
+        public string confirmData(DataTable dataTable)
         {
             string stateDesc = string.Empty;
             if (dataTable.Rows.Count > 0)
@@ -233,7 +244,6 @@ namespace THOK.WES
                 foreach (DataRow row in dataTable.Rows)
                 {
                     DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
-                    //url = configUtil.GetConfig("URL")["URL"] + "WarehouseOperationService/" + returnString + "?xmlData=";
                     url = string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
                         row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
                         row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],

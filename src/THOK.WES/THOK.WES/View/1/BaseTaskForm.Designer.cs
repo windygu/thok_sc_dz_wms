@@ -37,25 +37,6 @@ namespace THOK.WES.View
             this.sslOperator = new System.Windows.Forms.ToolStripStatusLabel();
             this.CyleTimer = new System.Windows.Forms.Timer(this.components);
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.bb_order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_detail_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_operate_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_brand_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_brand_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_handle_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_inventory_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_data_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_pallet_move_flg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_cargo_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_pallet_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_cell_rfid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_stock_rfid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_shelf_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_corporation_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_corporation_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlChart = new System.Windows.Forms.Panel();
             this.sbShelf = new System.Windows.Forms.VScrollBar();
             this.plWailt = new System.Windows.Forms.Panel();
@@ -66,6 +47,25 @@ namespace THOK.WES.View
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnOpType = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.bb_order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_detail_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_operate_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_cargo_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_brand_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_brand_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_handle_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_inventory_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_data_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_pallet_move_flg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_pallet_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_cell_rfid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_stock_rfid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_shelf_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_corporation_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_corporation_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlTool.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -136,7 +136,6 @@ namespace THOK.WES.View
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dgvMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMain.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -149,6 +148,7 @@ namespace THOK.WES.View
             this.bb_order_id,
             this.bb_detail_id,
             this.bb_operate_type,
+            this.bb_cargo_no,
             this.bb_brand_id,
             this.bb_brand_name,
             this.bb_unit_name,
@@ -157,7 +157,6 @@ namespace THOK.WES.View
             this.bb_data_time,
             this.bb_unit,
             this.bb_pallet_move_flg,
-            this.bb_cargo_no,
             this.bb_pallet_no,
             this.bb_cell_rfid,
             this.bb_stock_rfid,
@@ -184,152 +183,6 @@ namespace THOK.WES.View
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMain.Size = new System.Drawing.Size(804, 77);
             this.dgvMain.TabIndex = 1;
-            // 
-            // bb_order_id
-            // 
-            this.bb_order_id.DataPropertyName = "bb_order_id";
-            this.bb_order_id.HeaderText = "主单编码";
-            this.bb_order_id.Name = "bb_order_id";
-            this.bb_order_id.ReadOnly = true;
-            // 
-            // bb_detail_id
-            // 
-            this.bb_detail_id.DataPropertyName = "bb_detail_id";
-            this.bb_detail_id.HeaderText = "细单单号";
-            this.bb_detail_id.Name = "bb_detail_id";
-            this.bb_detail_id.ReadOnly = true;
-            // 
-            // bb_operate_type
-            // 
-            this.bb_operate_type.DataPropertyName = "bb_operate_type";
-            this.bb_operate_type.HeaderText = "类型";
-            this.bb_operate_type.Name = "bb_operate_type";
-            this.bb_operate_type.ReadOnly = true;
-            // 
-            // bb_brand_id
-            // 
-            this.bb_brand_id.DataPropertyName = "bb_brand_id";
-            this.bb_brand_id.HeaderText = "商品编码";
-            this.bb_brand_id.Name = "bb_brand_id";
-            this.bb_brand_id.ReadOnly = true;
-            // 
-            // bb_brand_name
-            // 
-            this.bb_brand_name.DataPropertyName = "bb_brand_name";
-            this.bb_brand_name.FillWeight = 180F;
-            this.bb_brand_name.HeaderText = "商品名称";
-            this.bb_brand_name.Name = "bb_brand_name";
-            this.bb_brand_name.ReadOnly = true;
-            // 
-            // bb_unit_name
-            // 
-            this.bb_unit_name.DataPropertyName = "bb_unit_name";
-            this.bb_unit_name.HeaderText = "单位名称";
-            this.bb_unit_name.Name = "bb_unit_name";
-            this.bb_unit_name.ReadOnly = true;
-            // 
-            // bb_handle_num
-            // 
-            this.bb_handle_num.DataPropertyName = "bb_handle_num";
-            this.bb_handle_num.HeaderText = "数量";
-            this.bb_handle_num.Name = "bb_handle_num";
-            this.bb_handle_num.ReadOnly = true;
-            // 
-            // bb_inventory_num
-            // 
-            this.bb_inventory_num.DataPropertyName = "bb_inventory_num";
-            this.bb_inventory_num.HeaderText = "库存数量";
-            this.bb_inventory_num.Name = "bb_inventory_num";
-            this.bb_inventory_num.ReadOnly = true;
-            this.bb_inventory_num.Visible = false;
-            // 
-            // bb_data_time
-            // 
-            this.bb_data_time.DataPropertyName = "bb_data_time";
-            this.bb_data_time.HeaderText = "时间";
-            this.bb_data_time.Name = "bb_data_time";
-            this.bb_data_time.ReadOnly = true;
-            this.bb_data_time.Visible = false;
-            // 
-            // bb_unit
-            // 
-            this.bb_unit.DataPropertyName = "bb_unit";
-            this.bb_unit.HeaderText = "计量单位";
-            this.bb_unit.Name = "bb_unit";
-            this.bb_unit.ReadOnly = true;
-            this.bb_unit.Visible = false;
-            // 
-            // bb_pallet_move_flg
-            // 
-            this.bb_pallet_move_flg.DataPropertyName = "bb_pallet_move_flg";
-            this.bb_pallet_move_flg.HeaderText = "移动标志";
-            this.bb_pallet_move_flg.Name = "bb_pallet_move_flg";
-            this.bb_pallet_move_flg.ReadOnly = true;
-            this.bb_pallet_move_flg.Visible = false;
-            // 
-            // bb_cargo_no
-            // 
-            this.bb_cargo_no.DataPropertyName = "bb_cargo_no";
-            this.bb_cargo_no.HeaderText = "货位ID";
-            this.bb_cargo_no.Name = "bb_cargo_no";
-            this.bb_cargo_no.ReadOnly = true;
-            this.bb_cargo_no.Visible = false;
-            // 
-            // bb_pallet_no
-            // 
-            this.bb_pallet_no.DataPropertyName = "bb_pallet_no";
-            this.bb_pallet_no.HeaderText = "托盘ID";
-            this.bb_pallet_no.Name = "bb_pallet_no";
-            this.bb_pallet_no.ReadOnly = true;
-            this.bb_pallet_no.Visible = false;
-            // 
-            // bb_cell_rfid
-            // 
-            this.bb_cell_rfid.DataPropertyName = "bb_cell_rfid";
-            this.bb_cell_rfid.HeaderText = "货位RFID";
-            this.bb_cell_rfid.Name = "bb_cell_rfid";
-            this.bb_cell_rfid.ReadOnly = true;
-            this.bb_cell_rfid.Visible = false;
-            // 
-            // bb_stock_rfid
-            // 
-            this.bb_stock_rfid.DataPropertyName = "bb_stock_rfid";
-            this.bb_stock_rfid.HeaderText = "托盘RFID";
-            this.bb_stock_rfid.Name = "bb_stock_rfid";
-            this.bb_stock_rfid.ReadOnly = true;
-            this.bb_stock_rfid.Visible = false;
-            // 
-            // bb_shelf_no
-            // 
-            this.bb_shelf_no.DataPropertyName = "bb_shelf_no";
-            this.bb_shelf_no.HeaderText = "货架";
-            this.bb_shelf_no.Name = "bb_shelf_no";
-            this.bb_shelf_no.ReadOnly = true;
-            this.bb_shelf_no.Visible = false;
-            // 
-            // bb_type
-            // 
-            this.bb_type.DataPropertyName = "bb_type";
-            this.bb_type.HeaderText = "业务类型";
-            this.bb_type.Name = "bb_type";
-            this.bb_type.ReadOnly = true;
-            this.bb_type.Visible = false;
-            // 
-            // bb_corporation_id
-            // 
-            this.bb_corporation_id.DataPropertyName = "bb_corporation_id";
-            this.bb_corporation_id.HeaderText = "公司代码";
-            this.bb_corporation_id.Name = "bb_corporation_id";
-            this.bb_corporation_id.ReadOnly = true;
-            this.bb_corporation_id.Visible = false;
-            // 
-            // bb_corporation_name
-            // 
-            this.bb_corporation_name.DataPropertyName = "bb_corporation_name";
-            this.bb_corporation_name.HeaderText = "公司名称";
-            this.bb_corporation_name.Name = "bb_corporation_name";
-            this.bb_corporation_name.ReadOnly = true;
-            this.bb_corporation_name.Visible = false;
             // 
             // pnlChart
             // 
@@ -446,6 +299,151 @@ namespace THOK.WES.View
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // bb_order_id
+            // 
+            this.bb_order_id.DataPropertyName = "bb_order_id";
+            this.bb_order_id.HeaderText = "主单编码";
+            this.bb_order_id.Name = "bb_order_id";
+            this.bb_order_id.ReadOnly = true;
+            // 
+            // bb_detail_id
+            // 
+            this.bb_detail_id.DataPropertyName = "bb_detail_id";
+            this.bb_detail_id.HeaderText = "细单单号";
+            this.bb_detail_id.Name = "bb_detail_id";
+            this.bb_detail_id.ReadOnly = true;
+            // 
+            // bb_operate_type
+            // 
+            this.bb_operate_type.DataPropertyName = "bb_operate_type";
+            this.bb_operate_type.HeaderText = "类型";
+            this.bb_operate_type.Name = "bb_operate_type";
+            this.bb_operate_type.ReadOnly = true;
+            // 
+            // bb_cargo_no
+            // 
+            this.bb_cargo_no.DataPropertyName = "bb_cargo_no";
+            this.bb_cargo_no.HeaderText = "货位ID";
+            this.bb_cargo_no.Name = "bb_cargo_no";
+            this.bb_cargo_no.ReadOnly = true;
+            // 
+            // bb_brand_id
+            // 
+            this.bb_brand_id.DataPropertyName = "bb_brand_id";
+            this.bb_brand_id.HeaderText = "商品编码";
+            this.bb_brand_id.Name = "bb_brand_id";
+            this.bb_brand_id.ReadOnly = true;
+            // 
+            // bb_brand_name
+            // 
+            this.bb_brand_name.DataPropertyName = "bb_brand_name";
+            this.bb_brand_name.FillWeight = 180F;
+            this.bb_brand_name.HeaderText = "商品名称";
+            this.bb_brand_name.Name = "bb_brand_name";
+            this.bb_brand_name.ReadOnly = true;
+            // 
+            // bb_unit_name
+            // 
+            this.bb_unit_name.DataPropertyName = "bb_unit_name";
+            this.bb_unit_name.HeaderText = "单位名称";
+            this.bb_unit_name.Name = "bb_unit_name";
+            this.bb_unit_name.ReadOnly = true;
+            // 
+            // bb_handle_num
+            // 
+            this.bb_handle_num.DataPropertyName = "bb_handle_num";
+            this.bb_handle_num.HeaderText = "数量";
+            this.bb_handle_num.Name = "bb_handle_num";
+            this.bb_handle_num.ReadOnly = true;
+            // 
+            // bb_inventory_num
+            // 
+            this.bb_inventory_num.DataPropertyName = "bb_inventory_num";
+            this.bb_inventory_num.HeaderText = "库存数量";
+            this.bb_inventory_num.Name = "bb_inventory_num";
+            this.bb_inventory_num.ReadOnly = true;
+            this.bb_inventory_num.Visible = false;
+            // 
+            // bb_data_time
+            // 
+            this.bb_data_time.DataPropertyName = "bb_data_time";
+            this.bb_data_time.HeaderText = "时间";
+            this.bb_data_time.Name = "bb_data_time";
+            this.bb_data_time.ReadOnly = true;
+            this.bb_data_time.Visible = false;
+            // 
+            // bb_unit
+            // 
+            this.bb_unit.DataPropertyName = "bb_unit";
+            this.bb_unit.HeaderText = "计量单位";
+            this.bb_unit.Name = "bb_unit";
+            this.bb_unit.ReadOnly = true;
+            this.bb_unit.Visible = false;
+            // 
+            // bb_pallet_move_flg
+            // 
+            this.bb_pallet_move_flg.DataPropertyName = "bb_pallet_move_flg";
+            this.bb_pallet_move_flg.HeaderText = "移动标志";
+            this.bb_pallet_move_flg.Name = "bb_pallet_move_flg";
+            this.bb_pallet_move_flg.ReadOnly = true;
+            this.bb_pallet_move_flg.Visible = false;
+            // 
+            // bb_pallet_no
+            // 
+            this.bb_pallet_no.DataPropertyName = "bb_pallet_no";
+            this.bb_pallet_no.HeaderText = "托盘ID";
+            this.bb_pallet_no.Name = "bb_pallet_no";
+            this.bb_pallet_no.ReadOnly = true;
+            this.bb_pallet_no.Visible = false;
+            // 
+            // bb_cell_rfid
+            // 
+            this.bb_cell_rfid.DataPropertyName = "bb_cell_rfid";
+            this.bb_cell_rfid.HeaderText = "货位RFID";
+            this.bb_cell_rfid.Name = "bb_cell_rfid";
+            this.bb_cell_rfid.ReadOnly = true;
+            this.bb_cell_rfid.Visible = false;
+            // 
+            // bb_stock_rfid
+            // 
+            this.bb_stock_rfid.DataPropertyName = "bb_stock_rfid";
+            this.bb_stock_rfid.HeaderText = "托盘RFID";
+            this.bb_stock_rfid.Name = "bb_stock_rfid";
+            this.bb_stock_rfid.ReadOnly = true;
+            this.bb_stock_rfid.Visible = false;
+            // 
+            // bb_shelf_no
+            // 
+            this.bb_shelf_no.DataPropertyName = "bb_shelf_no";
+            this.bb_shelf_no.HeaderText = "货架";
+            this.bb_shelf_no.Name = "bb_shelf_no";
+            this.bb_shelf_no.ReadOnly = true;
+            this.bb_shelf_no.Visible = false;
+            // 
+            // bb_type
+            // 
+            this.bb_type.DataPropertyName = "bb_type";
+            this.bb_type.HeaderText = "业务类型";
+            this.bb_type.Name = "bb_type";
+            this.bb_type.ReadOnly = true;
+            this.bb_type.Visible = false;
+            // 
+            // bb_corporation_id
+            // 
+            this.bb_corporation_id.DataPropertyName = "bb_corporation_id";
+            this.bb_corporation_id.HeaderText = "公司代码";
+            this.bb_corporation_id.Name = "bb_corporation_id";
+            this.bb_corporation_id.ReadOnly = true;
+            this.bb_corporation_id.Visible = false;
+            // 
+            // bb_corporation_name
+            // 
+            this.bb_corporation_name.DataPropertyName = "bb_corporation_name";
+            this.bb_corporation_name.HeaderText = "公司名称";
+            this.bb_corporation_name.Name = "bb_corporation_name";
+            this.bb_corporation_name.ReadOnly = true;
+            this.bb_corporation_name.Visible = false;
+            // 
             // BaseTaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -482,9 +480,15 @@ namespace THOK.WES.View
         private System.Windows.Forms.Panel pnlChart;
         private System.Windows.Forms.VScrollBar sbShelf;
         private System.Windows.Forms.Panel pnlData;
+        private System.Windows.Forms.Button btnConfirm;
+        protected System.Windows.Forms.Button btnSearch;
+        protected System.Windows.Forms.Button btnOpType;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Timer CyleTimer;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_order_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_detail_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_operate_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bb_cargo_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_unit_name;
@@ -493,7 +497,6 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_data_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_pallet_move_flg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bb_cargo_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_pallet_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_cell_rfid;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_stock_rfid;
@@ -501,10 +504,5 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_corporation_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_corporation_name;
-        private System.Windows.Forms.Button btnConfirm;
-        protected System.Windows.Forms.Button btnSearch;
-        protected System.Windows.Forms.Button btnOpType;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Timer CyleTimer;
     }
 }

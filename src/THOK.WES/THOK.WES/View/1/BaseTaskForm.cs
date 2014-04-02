@@ -65,6 +65,7 @@ namespace THOK.WES.View
         public BaseTaskForm()
         {
             InitializeComponent();
+            
             pnlData.Visible = true;
             pnlData.Dock = DockStyle.Fill;
 
@@ -74,13 +75,14 @@ namespace THOK.WES.View
             url = configUtil.GetConfig("URL")["URL"];          
             UseRfid = configUtil.GetConfig("RFID")["USEDRFID"];
             port = configUtil.GetConfig("RFID")["PORT"];
+
+            dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             if (configUtil.GetConfig("DeviceType")["Device"] == "0")
             {
                 this.dgvMain.ColumnHeadersHeight = 40;
                 this.dgvMain.RowTemplate.Height = 40;
                 this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 16);
                 this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 13);
-            
                 UseTag = "0";
             }
             else if (configUtil.GetConfig("DeviceType")["Device"] == "1")
@@ -142,8 +144,14 @@ namespace THOK.WES.View
             {
                 try
                 {
-                    ScanningRFID();
-
+                    //string getRFID = ScanningRFID(); //读取RFID
+                }
+                catch (Exception ex)
+                {
+                    THOKUtil.ShowError("读取RFID失败，请检查串口是否匹配！详细：" + ex.Message);
+                }
+                try
+                {
                     DataSet ds = GenerateEmptyTables();
                     DisplayPlWailt();
                     foreach (DataGridViewRow row in dgvMain.SelectedRows)
@@ -163,7 +171,7 @@ namespace THOK.WES.View
                         detailRow["bb_operate_type"] = row.Cells["bb_operate_type"].Value.ToString();
                         detailRow["bb_pallet_move_flg"] = row.Cells["bb_pallet_move_flg"].Value.ToString();
                         detailRow["bb_cargo_no"] = row.Cells["bb_cargo_no"].Value.ToString();
-                        detailRow["bb_pallet_no"] = row.Cells["bb_pallet_no"].Value.ToString();
+                        detailRow["bb_pallet_no"] = System.DateTime.Now.ToString("MMdd");//row.Cells["bb_pallet_no"].Value.ToString();
                         detailRow["bb_brand_id"] = row.Cells["bb_brand_id"].Value.ToString();
                         detailRow["bb_brand_name"] = row.Cells["bb_brand_name"].Value.ToString();
                         detailRow["bb_handle_num"] = Convert.ToDecimal(row.Cells["bb_handle_num"].Value.ToString());
@@ -181,10 +189,10 @@ namespace THOK.WES.View
                             {
                                 detailRow["bb_inventory_num"] = confirmForm.Piece;
                             }
+                            ds.Tables["DETAIL"].Rows.Add(detailRow);
+                            THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
                         }
-                        ds.Tables["DETAIL"].Rows.Add(detailRow);
                     }
-                    THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"], ReturnString));
                     ClosePlWailt();
                 }
                 catch (Exception ex)
@@ -220,8 +228,7 @@ namespace THOK.WES.View
             InTask = true;
             if (billTable != null && billTable.Rows.Count != 0)
             {
-                dgvMain.DataSource = billTable;
-
+                dgvMain.DataSource = billTable.Select("bb_pallet_no is null");
                 InTask = false;
             }
             else
@@ -232,7 +239,7 @@ namespace THOK.WES.View
         }
 
         //读取RFID
-        private void getRfidCode()
+        private string getRfidCode()
         {
             List<string> listRfid = new List<string>();
             try
@@ -247,6 +254,7 @@ namespace THOK.WES.View
             {
                 throw new Exception(e.Message + "," + RfidCode);
             }
+            return RfidCode;
         }
 
         private string getBrandInfo()
@@ -318,13 +326,13 @@ namespace THOK.WES.View
             return ds;
         }
 
-        private void ScanningRFID()
+        private string ScanningRFID()
         {
             try
             {
                 if (BillTypes == "1")
                 {
-                    this.getRfidCode();
+                    return this.getRfidCode();
                 }
             }
             catch (Exception ex)
@@ -332,6 +340,7 @@ namespace THOK.WES.View
                 ClosePlWailt();
                 THOKUtil.ShowError("扫描读取托盘信息出错，原因：" + ex.Message);
             }
+            return null;
         }
 
         private void btnOpType_Click(object sender, EventArgs e)
