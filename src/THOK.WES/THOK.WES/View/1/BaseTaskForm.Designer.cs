@@ -50,6 +50,7 @@ namespace THOK.WES.View
             this.bb_order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_detail_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_operate_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_area_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_cargo_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_brand_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_brand_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,6 +149,7 @@ namespace THOK.WES.View
             this.bb_order_id,
             this.bb_detail_id,
             this.bb_operate_type,
+            this.bb_area_type,
             this.bb_cargo_no,
             this.bb_brand_id,
             this.bb_brand_name,
@@ -320,6 +322,14 @@ namespace THOK.WES.View
             this.bb_operate_type.Name = "bb_operate_type";
             this.bb_operate_type.ReadOnly = true;
             // 
+            // bb_area_type
+            // 
+            this.bb_area_type.DataPropertyName = "bb_area_type";
+            this.bb_area_type.HeaderText = "ø‚«¯¿‡–Õ";
+            this.bb_area_type.Name = "bb_area_type";
+            this.bb_area_type.ReadOnly = true;
+            this.bb_area_type.Visible = false;
+            // 
             // bb_cargo_no
             // 
             this.bb_cargo_no.DataPropertyName = "bb_cargo_no";
@@ -488,6 +498,7 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_order_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_detail_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_operate_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bb_area_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_cargo_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_name;

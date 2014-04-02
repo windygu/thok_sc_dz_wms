@@ -134,21 +134,31 @@ namespace THOK.WES.View
             {
                 THOKUtil.ShowError("读取数据失败，原因：" + ex.Message);
                 ClosePlWailt();
+                return;
             }
         }
 
         //确认
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            string getRFID = "";
+
             if (dgvMain.SelectedRows.Count != 0)
             {
                 try
                 {
-                    //string getRFID = ScanningRFID(); //读取RFID
+                    string bb_area_type = dgvMain.Rows[0].Cells["bb_area_type"].ToString();
+                    
+                    // 0:主储存区,1:零件烟区,2:零条烟区,
+                    if (bb_area_type == "0")
+                    {
+                        getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//ScanningRFID();//读取RFID
+                    }
                 }
                 catch (Exception ex)
                 {
                     THOKUtil.ShowError("读取RFID失败，请检查串口是否匹配！详细：" + ex.Message);
+                    return;
                 }
                 try
                 {
@@ -171,7 +181,7 @@ namespace THOK.WES.View
                         detailRow["bb_operate_type"] = row.Cells["bb_operate_type"].Value.ToString();
                         detailRow["bb_pallet_move_flg"] = row.Cells["bb_pallet_move_flg"].Value.ToString();
                         detailRow["bb_cargo_no"] = row.Cells["bb_cargo_no"].Value.ToString();
-                        detailRow["bb_pallet_no"] = System.DateTime.Now.ToString("MMdd");//row.Cells["bb_pallet_no"].Value.ToString();
+                        detailRow["bb_pallet_no"] = getRFID;//此标签改为RFID传入值
                         detailRow["bb_brand_id"] = row.Cells["bb_brand_id"].Value.ToString();
                         detailRow["bb_brand_name"] = row.Cells["bb_brand_name"].Value.ToString();
                         detailRow["bb_handle_num"] = Convert.ToDecimal(row.Cells["bb_handle_num"].Value.ToString());
@@ -228,7 +238,7 @@ namespace THOK.WES.View
             InTask = true;
             if (billTable != null && billTable.Rows.Count != 0)
             {
-                dgvMain.DataSource = billTable.Select("bb_pallet_no is null");
+                dgvMain.DataSource = billTable;
                 InTask = false;
             }
             else

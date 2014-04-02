@@ -160,7 +160,7 @@ namespace THOK.WES
             }
             catch (Exception e)
             {
-                THOKUtil.ShowError("从浪潮下载数据出错，原因：" + e.Message);
+                THOKUtil.ShowError("从浪潮ScanNewBill下载数据出错，原因：" + e.Message);
             }
             return list;
         }
@@ -253,6 +253,10 @@ namespace THOK.WES
 
                     file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
                     stateDesc = ParseMsg(xml);
+                    if (stateDesc == "")
+                    {
+                        stateDesc = "浪潮返回信息失败！";
+                    }
                 }
             }
             return stateDesc;
@@ -377,7 +381,9 @@ namespace THOK.WES
                         detailRow["bb_cell_rfid"] = detailNode.SelectSingleNode("bb_cell_rfid").InnerText;
                         detailRow["bb_stock_rfid"] = detailNode.SelectSingleNode("bb_stock_rfid").InnerText;
                         detailRow["bb_unit_name"] = detailNode.SelectSingleNode("bb_unit_name").InnerText;
+                        detailRow["bb_area_type"] = detailNode.SelectSingleNode("bb_area_type").InnerText;
                         detailRow["bb_data_time"] = DateTime.Now;
+
                         ds.Tables["DETAIL"].Rows.Add(detailRow);
                     }
                 }
@@ -425,6 +431,7 @@ namespace THOK.WES
             detail.Columns.Add("bb_cell_rfid");
             detail.Columns.Add("bb_stock_rfid");
             detail.Columns.Add("bb_unit_name");
+            detail.Columns.Add("bb_area_type");
             detail.Columns.Add("bb_data_time");
 
             return ds;
