@@ -236,7 +236,32 @@ namespace THOK.WES
         //    }
         //    return stateDesc;
         //}
-        public string confirmData(DataTable dataTable)
+        //public string confirmData(DataTable dataTable)
+        //{
+        //    string stateDesc = string.Empty;
+        //    if (dataTable.Rows.Count > 0)
+        //    {
+        //        foreach (DataRow row in dataTable.Rows)
+        //        {
+        //            DzInspurWarehouseOperationService.WarehouseOperationServiceService ops = new DzInspurWarehouseOperationService.WarehouseOperationServiceService();
+        //            url = string.Format(returnMsg, row["bb_result_info"], row["bb_type"], row["bb_order_id"], row["bb_pda_device_id"], row["bb_confirmor_name"], row["bb_confirm_date"],
+        //                row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
+        //                row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],
+        //                row["bb_inventory_num"], row["bb_unit"], row["bb_operator_name"], row["bb_operate_date"]);
+
+        //            string xml = ops.HitShelfConfirm(url);
+
+        //            file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
+        //            stateDesc = ParseMsg(xml);
+        //            if (stateDesc == "")
+        //            {
+        //                stateDesc = "浪潮返回信息失败！";
+        //            }
+        //        }
+        //    }
+        //    return stateDesc;
+        //}
+        public void confirmData(DataTable dataTable)
         {
             string stateDesc = string.Empty;
             if (dataTable.Rows.Count > 0)
@@ -248,18 +273,10 @@ namespace THOK.WES
                         row["bb_corporation_id"], row["bb_corporation_name"], row["bb_detail_id"], row["bb_operate_type"], row["bb_cargo_no"],
                         row["bb_pallet_no"], row["bb_pallet_move_flg"], row["bb_brand_id"], row["bb_brand_name"], row["bb_handle_num"],
                         row["bb_inventory_num"], row["bb_unit"], row["bb_operator_name"], row["bb_operate_date"]);
-
                     string xml = ops.HitShelfConfirm(url);
-
                     file.logInfo(DateTime.Now.ToString("yyyy-MM-dd"), "[完成反馈][" + DateTime.Now + "]:" + xml);
-                    stateDesc = ParseMsg(xml);
-                    if (stateDesc == "")
-                    {
-                        stateDesc = "浪潮返回信息失败！";
-                    }
                 }
             }
-            return stateDesc;
         }
 
         /// <summary>

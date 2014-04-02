@@ -147,12 +147,13 @@ namespace THOK.WES.View
             {
                 try
                 {
-                    string bb_area_type = dgvMain.Rows[0].Cells["bb_area_type"].ToString();
+                    string bb_area_type = dgvMain.Rows[0].Cells["bb_area_type"].Value.ToString();
                     
                     // 0:主储存区,1:零件烟区,2:零条烟区,
                     if (bb_area_type == "0")
                     {
-                        getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//ScanningRFID();//读取RFID
+                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//ScanningRFID();//读取RFID
+                        getRFID = ScanningRFID();
                     }
                 }
                 catch (Exception ex)
@@ -200,7 +201,15 @@ namespace THOK.WES.View
                                 detailRow["bb_inventory_num"] = confirmForm.Piece;
                             }
                             ds.Tables["DETAIL"].Rows.Add(detailRow);
-                            THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
+                            try
+                            {
+                                wave.confirmData(ds.Tables["DETAIL"]);
+                            }
+                            catch (Exception ex)
+                            {
+                                THOKUtil.ShowError("执行浪潮confirmData失败！原因：" + ex.Message);
+                            }
+                            //THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
                         }
                     }
                     ClosePlWailt();
