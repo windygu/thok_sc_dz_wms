@@ -420,7 +420,7 @@ namespace THOK.WES
 
                         //细表信息
                         detailRow["bb_detail_id"] = detailNode.SelectSingleNode("bb_detail_id").InnerText;
-                        detailRow["bb_operate_type"] = detailNode.SelectSingleNode("bb_operate_type").InnerText;
+                        detailRow["bb_operate_type"] = detailNode.SelectSingleNode("bb_operate_type").InnerText == "A" ? "盘点" : detailNode.SelectSingleNode("bb_operate_type").InnerText == "B" ? "移出" : detailNode.SelectSingleNode("bb_operate_type").InnerText == "C" ? "移入" : "异常";
                         detailRow["bb_pallet_move_flg"] = detailNode.SelectSingleNode("bb_pallet_move_flg").InnerText;
                         detailRow["bb_cargo_no"] = detailNode.SelectSingleNode("bb_cargo_no").InnerText;
                         if (billNode.SelectSingleNode("bb_type").InnerText == "STOCKTAKE")
