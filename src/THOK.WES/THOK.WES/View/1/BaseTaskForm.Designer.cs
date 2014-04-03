@@ -50,12 +50,12 @@ namespace THOK.WES.View
             this.bb_order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_detail_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_operate_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bb_area_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_cargo_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_brand_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_brand_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_handle_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bb_area_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_inventory_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_data_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bb_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -149,12 +149,12 @@ namespace THOK.WES.View
             this.bb_order_id,
             this.bb_detail_id,
             this.bb_operate_type,
-            this.bb_area_type,
             this.bb_cargo_no,
             this.bb_brand_id,
             this.bb_brand_name,
             this.bb_unit_name,
             this.bb_handle_num,
+            this.bb_area_type,
             this.bb_inventory_num,
             this.bb_data_time,
             this.bb_unit,
@@ -322,14 +322,6 @@ namespace THOK.WES.View
             this.bb_operate_type.Name = "bb_operate_type";
             this.bb_operate_type.ReadOnly = true;
             // 
-            // bb_area_type
-            // 
-            this.bb_area_type.DataPropertyName = "bb_area_type";
-            this.bb_area_type.HeaderText = "库区类型";
-            this.bb_area_type.Name = "bb_area_type";
-            this.bb_area_type.ReadOnly = true;
-            this.bb_area_type.Visible = false;
-            // 
             // bb_cargo_no
             // 
             this.bb_cargo_no.DataPropertyName = "bb_cargo_no";
@@ -355,7 +347,7 @@ namespace THOK.WES.View
             // bb_unit_name
             // 
             this.bb_unit_name.DataPropertyName = "bb_unit_name";
-            this.bb_unit_name.HeaderText = "单位名称";
+            this.bb_unit_name.HeaderText = "单位";
             this.bb_unit_name.Name = "bb_unit_name";
             this.bb_unit_name.ReadOnly = true;
             // 
@@ -365,6 +357,14 @@ namespace THOK.WES.View
             this.bb_handle_num.HeaderText = "数量";
             this.bb_handle_num.Name = "bb_handle_num";
             this.bb_handle_num.ReadOnly = true;
+            // 
+            // bb_area_type
+            // 
+            this.bb_area_type.DataPropertyName = "bb_area_type";
+            this.bb_area_type.HeaderText = "库区类型";
+            this.bb_area_type.Name = "bb_area_type";
+            this.bb_area_type.ReadOnly = true;
+            this.bb_area_type.Visible = false;
             // 
             // bb_inventory_num
             // 
@@ -498,12 +498,12 @@ namespace THOK.WES.View
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_order_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_detail_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_operate_type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bb_area_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_cargo_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_brand_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_unit_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_handle_num;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bb_area_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_inventory_num;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_data_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn bb_unit;

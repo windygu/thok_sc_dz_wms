@@ -9,7 +9,7 @@
   </UDP>
   <RFID>
     <PORT name="USEDRFID" value="0" />
-    <PORT name="PORT" value="COM2" />
+    <PORT name="PORT" value="COM1" />
   </RFID>
   <Layers>
     <Number name="Number" value="0,1,2,3" />

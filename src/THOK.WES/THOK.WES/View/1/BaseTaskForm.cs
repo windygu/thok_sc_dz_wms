@@ -65,18 +65,15 @@ namespace THOK.WES.View
         public BaseTaskForm()
         {
             InitializeComponent();
-            
             pnlData.Visible = true;
             pnlData.Dock = DockStyle.Fill;
-
             pnlChart.Visible = false;
             pnlChart.Dock = DockStyle.Fill;
-                 
-            url = configUtil.GetConfig("URL")["URL"];          
+
+            url = configUtil.GetConfig("URL")["URL"];
             UseRfid = configUtil.GetConfig("RFID")["USEDRFID"];
             port = configUtil.GetConfig("RFID")["PORT"];
 
-            dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             if (configUtil.GetConfig("DeviceType")["Device"] == "0")
             {
                 this.dgvMain.ColumnHeadersHeight = 40;
@@ -96,12 +93,21 @@ namespace THOK.WES.View
             }
             else
             {
+                //dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvMain.Columns[0].Width = 120;
+                dgvMain.Columns[1].Width = 120;
+                dgvMain.Columns[2].Width = 60;
+                dgvMain.Columns[3].Width = 80;
+                dgvMain.Columns[4].Width = 100;
+                dgvMain.Columns[5].Width = 200;
+                dgvMain.Columns[6].Width = 60;
+                dgvMain.Columns[7].Width = 60;
                 this.dgvMain.ColumnHeadersHeight = 40;
                 this.dgvMain.RowTemplate.Height = 40;
-                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 16);
-                this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 14);
+                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 10);
+                this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 10);
                 UseTag = "1";
-            } 
+            }
         }
 
         //查询
