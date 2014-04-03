@@ -16,11 +16,11 @@ namespace THOK.WES.View
             get { return piece; }
             set { piece = value;}
         }
-        private int item = 0;
-        public int Item
+        private int bar = 0;
+        public int Bar
         {
-            get { return item; }
-            set {item = value; }
+            get { return bar; }
+            set {bar = value; }
         }
 
         private string storageName = "";
@@ -40,15 +40,12 @@ namespace THOK.WES.View
             {
                 btnItemUp.Enabled = false;
                 btnItemDown.Enabled = false;
-                btnPieceUp.Enabled = false;
-                btnPieceDown.Enabled = false;
             }
         }
 
         private void RefreshData()
         {
-            //lblPiece.Text = piece.ToString();
-            lblItem.Text = piece.ToString();
+            lblBar.Text = piece.ToString();
             label3.Text = "作业储位：" + this.storageName;
             label4.Text = "操作类型：" + this.operateName + (this.targetStorageName != ""?"->" + this.targetStorageName:""); 
             label5.Text = "卷烟名称：" + this.tobaccoName;
@@ -59,31 +56,17 @@ namespace THOK.WES.View
             DialogResult = DialogResult.Cancel;
         }
 
-        private void btnPieceUp_Click(object sender, EventArgs e)
+        private void btnBarUp_Click(object sender, EventArgs e)
         {
-            piece++;
+            bar++;
             RefreshData();
         }
 
-        private void btnPieceDown_Click(object sender, EventArgs e)
+        private void btnBarDown_Click(object sender, EventArgs e)
         {
-            piece--;
-            if (piece < 0)
-                piece = 0;
-            RefreshData();
-        }
-
-        private void btnItemUp_Click(object sender, EventArgs e)
-        {
-            item++;
-            RefreshData();
-        }
-
-        private void btnItemDown_Click(object sender, EventArgs e)
-        {
-            item--;
-            if (item < 0)
-                item = 0;
+            bar--;
+            if (bar < 0)
+                bar = 0;
             RefreshData();
         }
 

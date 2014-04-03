@@ -94,8 +94,8 @@ namespace THOK.WES.View
             else
             {
                 //dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgvMain.Columns[0].Width = 120;
-                dgvMain.Columns[1].Width = 120;
+                dgvMain.Columns[0].Width = 150;
+                dgvMain.Columns[1].Width = 150;
                 dgvMain.Columns[2].Width = 60;
                 dgvMain.Columns[3].Width = 80;
                 dgvMain.Columns[4].Width = 100;
@@ -158,7 +158,7 @@ namespace THOK.WES.View
                     // 0:主储存区,1:零件烟区,2:零条烟区,
                     if (bb_area_type == "0")
                     {
-                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");
+                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//本地测试
                         getRFID = ScanningRFID();//读取RFID
                     }
                 }
@@ -207,7 +207,7 @@ namespace THOK.WES.View
 
                         ConfirmDialog confirmForm = new ConfirmDialog(BillTypes, row.Cells["bb_cargo_no"].Value.ToString(), row.Cells["bb_cargo_no"].Value.ToString(), row.Cells["bb_operate_type"].Value.ToString(), row.Cells["bb_brand_name"].Value.ToString());
                         confirmForm.Piece = Convert.ToInt32(row.Cells["bb_handle_num"].Value.ToString());
-                        confirmForm.Item = 0;
+                        confirmForm.Bar = 0;
                         if (confirmForm.ShowDialog() == DialogResult.OK)
                         {
                             if (BillTypes == "2")
@@ -238,6 +238,10 @@ namespace THOK.WES.View
                                 THOKUtil.ShowError("执行浪潮confirmData失败！原因：" + ex.Message);
                             }
                             //THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
                     ClosePlWailt();
