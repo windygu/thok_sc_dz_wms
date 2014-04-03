@@ -96,10 +96,10 @@ namespace THOK.WES.View
             }
             else
             {
-                this.dgvMain.ColumnHeadersHeight = 22;
-                this.dgvMain.RowTemplate.Height = 22;
-                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 10);
-                this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 10);
+                this.dgvMain.ColumnHeadersHeight = 40;
+                this.dgvMain.RowTemplate.Height = 40;
+                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 16);
+                this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 14);
                 UseTag = "1";
             } 
         }
@@ -152,8 +152,8 @@ namespace THOK.WES.View
                     // 0:主储存区,1:零件烟区,2:零条烟区,
                     if (bb_area_type == "0")
                     {
-                        getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");
-                        //getRFID = ScanningRFID();//读取RFID
+                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");
+                        getRFID = ScanningRFID();//读取RFID
                     }
                 }
                 catch (Exception ex)
