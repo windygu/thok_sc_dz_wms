@@ -234,22 +234,36 @@ namespace THOK.WES.View
                                 {
                                     if (getRFID == detailRow["bb_pallet_no"].ToString() || detailRow["bb_pallet_no"].ToString() == "" || detailRow["bb_pallet_no"].ToString() == null)
                                     {
-                                        wave.confirmData(ds.Tables["DETAIL"], BillTypes);
-                                        //THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
+                                        try
+                                        {
+                                            wave.confirmData(ds.Tables["DETAIL"], BillTypes);
+                                            THOKUtil.ShowInfo("操作完成");
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            THOKUtil.ShowError("操作失败！Catch：" + ex.Message);
+                                            this.VisibleWailt(false);
+                                            return;
+                                        }
                                     }
                                     else
                                     {
                                         THOKUtil.ShowError("RFID不匹配！请选择正确的货位，重新出库！");
+                                        this.VisibleWailt(false);
+                                        return;
                                     }
                                 }
                             }
                             catch (Exception ex)
                             {
                                 THOKUtil.ShowError("执行浪潮confirmData失败！原因：" + ex.Message);
+                                this.VisibleWailt(false);
+                                break;
                             }
                         }
                         else
                         {
+                            this.VisibleWailt(false);
                             break;
                         }
                     }
@@ -258,12 +272,15 @@ namespace THOK.WES.View
                 catch (Exception ex)
                 {
                     THOKUtil.ShowError("执行失败，原因：" + ex.Message);
+                    this.VisibleWailt(false);
                     return;
                 }
             }
             else
             {
                 THOKUtil.ShowInfo("当前操作失败！原因：没有选择数据，请选择！");
+                this.VisibleWailt(false);
+                return;
             }
 
             RefreshData();
@@ -294,10 +311,14 @@ namespace THOK.WES.View
                 {
                     if (listRfid.Count > 0)
                     {
+                        //MessageBox.Show("[" + RfidCode + "]");
                         RfidCode = listRfid[0].ToString();
-                        MessageBox.Show("[" + RfidCode + "]");
+                        return RfidCode;
                     }
-                    return RfidCode;
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
@@ -336,21 +357,21 @@ namespace THOK.WES.View
                 InTask = false;
                 this.VisibleWailt(false);
 
-                double sum = 0;
-                foreach (DataRow row in billTable.Rows)
-                {
-                    sum += double.Parse(row["bb_handle_num"].ToString());
-                }
-                string billType = "";
-                switch (BillTypes)
-                {
-                    case "1": billType = "上架清单"; break;
-                    case "2": billType = "盘点清单"; break;
-                    case "3": billType = "移位清单"; break;
-                    case "4": billType = "下架清单"; break;
-                    default: billType = "异常单据"; break;
-                }
-                THOKUtil.ShowInfo("当前【" + billType + "】订单总数量：" + sum);
+                //double sum = 0;
+                //foreach (DataRow row in billTable.Rows)
+                //{
+                //    sum += double.Parse(row["bb_handle_num"].ToString());
+                //}
+                //string billType = "";
+                //switch (BillTypes)
+                //{
+                //    case "1": billType = "上架清单"; break;
+                //    case "2": billType = "盘点清单"; break;
+                //    case "3": billType = "移位清单"; break;
+                //    case "4": billType = "下架清单"; break;
+                //    default: billType = "异常单据"; break;
+                //}
+                //THOKUtil.ShowInfo("当前【" + billType + "】订单总数量：" + sum);
             }
             else
             {
