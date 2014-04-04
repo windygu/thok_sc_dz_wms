@@ -71,6 +71,7 @@ namespace THOK.WES
         //        throw new Exception("错误：" + e.Message + "," + errString + "，数据：" + listRfid.ToArray());
         //    }
         //}
+        
         public List<string> LoadTagList(string strPort, int nBaudrate, out string errString)
         {
             List<string> listRfid = new List<string>();
@@ -82,7 +83,9 @@ namespace THOK.WES
             }
             catch (Exception ex)
             {
-                throw new Exception("BRI读取串口:" + ex.Message);
+                THOKUtil.ShowError("BRIReader读取串口 [ " + strPort + " ] 失败！" + "内部：" + ex.Message);
+                //throw new Exception("BRI读取串口:" + ex.Message);
+                return null;
             }
             try
             {
@@ -109,7 +112,8 @@ namespace THOK.WES
             catch (Exception e)
             {
                 brdr.Dispose();
-                throw new Exception("错误：" + e.Message + "," + errString + "，数据：" + listRfid.ToArray());
+                THOKUtil.ShowError("方法LoadTagList错误：" + e.Message + "," + errString + "，数据：" + listRfid.ToArray());
+                return null;
             }
         }
     }

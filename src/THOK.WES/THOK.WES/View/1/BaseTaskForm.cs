@@ -97,15 +97,15 @@ namespace THOK.WES.View
                 dgvMain.Columns[0].Width = 150;
                 dgvMain.Columns[1].Width = 150;
                 dgvMain.Columns[2].Width = 60;
-                dgvMain.Columns[3].Width = 80;
+                dgvMain.Columns[3].Width = 120;
                 dgvMain.Columns[4].Width = 100;
                 dgvMain.Columns[5].Width = 200;
                 dgvMain.Columns[6].Width = 60;
                 dgvMain.Columns[7].Width = 60;
-                this.dgvMain.ColumnHeadersHeight = 40;
+                this.dgvMain.ColumnHeadersHeight = 30;
                 this.dgvMain.RowTemplate.Height = 40;
-                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 10);
                 this.dgvMain.ColumnHeadersDefaultCellStyle.Font = new Font("宋体", 10);
+                this.dgvMain.DefaultCellStyle.Font = new Font("宋体", 14);                
                 UseTag = "1";
             }
         }
@@ -115,7 +115,7 @@ namespace THOK.WES.View
         {
             try
             {
-                ClosePlWailt();
+                this.VisibleWailt(false);
                 listBill = wave.ScanNewBill("ScanNewBill", BillTypes);
                 switch (listBill.Count)
                 {
@@ -133,13 +133,13 @@ namespace THOK.WES.View
                         }
                         break;
                 }
-                DisplayPlWailt();
+                this.VisibleWailt(true);
                 RefreshData();
             }
             catch (Exception ex)
             {
                 THOKUtil.ShowError("读取数据失败，原因：" + ex.Message);
-                ClosePlWailt();
+                this.VisibleWailt(false);
                 return;
             }
         }
@@ -151,27 +151,34 @@ namespace THOK.WES.View
 
             if (dgvMain.SelectedRows.Count != 0)
             {
-                try
+                string bb_area_type = dgvMain.Rows[0].Cells["bb_area_type"].Value.ToString();
+
+                if (bb_area_type == "0")                    //0:主储存区,1:零件烟区,2:零条烟区
                 {
-                    string bb_area_type = dgvMain.Rows[0].Cells["bb_area_type"].Value.ToString();
-                    
-                    // 0:主储存区,1:零件烟区,2:零条烟区,
-                    if (bb_area_type == "0")
+                    getRFID = ScanningRFID(bb_area_type);   //读取RFID
+
+                    if (getRFID == null)
                     {
-                        //getRFID = "RFID" + System.DateTime.Now.ToString("MMddHHmmss");//本地测试
-                        getRFID = ScanningRFID();//读取RFID
+                        THOKUtil.ShowError("操作失败！");
+                        this.VisibleWailt(false);
+                        return;
                     }
                 }
-                catch (Exception ex)
+                else if (bb_area_type == "1")
                 {
-                    THOKUtil.ShowError("读取RFID失败，请检查串口是否匹配！详细：" + ex.Message);
+                    getRFID = "";
+                }
+                else
+                {
+                    THOKUtil.ShowError("该订单不是[主储区]或[零条烟区]");
+                    this.VisibleWailt(false);
                     return;
                 }
                 try
                 {
+                    this.VisibleWailt(true);
 
                     DataSet ds = GenerateEmptyTables();
-                    DisplayPlWailt();
                     foreach (DataGridViewRow row in dgvMain.SelectedRows)
                     {
                         DataRow detailRow = ds.Tables["DETAIL"].NewRow();
@@ -214,7 +221,9 @@ namespace THOK.WES.View
                             {
                                 detailRow["bb_inventory_num"] = confirmForm.Piece;
                             }
+
                             ds.Tables["DETAIL"].Rows.Add(detailRow);
+
                             try
                             {
                                 if (BillTypes == "1")
@@ -226,6 +235,7 @@ namespace THOK.WES.View
                                     if (getRFID == detailRow["bb_pallet_no"].ToString() || detailRow["bb_pallet_no"].ToString() == "" || detailRow["bb_pallet_no"].ToString() == null)
                                     {
                                         wave.confirmData(ds.Tables["DETAIL"], BillTypes);
+                                        //THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
                                     }
                                     else
                                     {
@@ -237,24 +247,67 @@ namespace THOK.WES.View
                             {
                                 THOKUtil.ShowError("执行浪潮confirmData失败！原因：" + ex.Message);
                             }
-                            //THOKUtil.ShowInfo(wave.confirmData(ds.Tables["DETAIL"]));
                         }
                         else
                         {
                             break;
                         }
                     }
-                    ClosePlWailt();
+                    this.VisibleWailt(false);
                 }
                 catch (Exception ex)
                 {
                     THOKUtil.ShowError("执行失败，原因：" + ex.Message);
+                    return;
                 }
             }
             else
+            {
                 THOKUtil.ShowInfo("当前操作失败！原因：没有选择数据，请选择！");
+            }
 
             RefreshData();
+        }
+
+        //读取RFID
+        private string ScanningRFID(string bb_area_type)
+        {
+            List<string> listRfid = new List<string>();
+
+            if (bb_area_type == "0")
+            {
+                this.VisibleWailt(true);
+                try
+                {
+                    listRfid = rRfid.LoadTagList(port, 115200, out errInfo);
+                }
+                catch (Exception ex)
+                {
+                    this.VisibleWailt(false);
+                    THOKUtil.ShowError("扫描RFID失败，请检查串口是否匹配！原因：" + ex.Message + "," + RfidCode);
+                    return null;
+                }
+
+                Application.DoEvents();
+
+                if (listRfid != null)
+                {
+                    if (listRfid.Count > 0)
+                    {
+                        RfidCode = listRfid[0].ToString();
+                        MessageBox.Show("[" + RfidCode + "]");
+                    }
+                    return RfidCode;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
 
         //退出
@@ -274,47 +327,43 @@ namespace THOK.WES.View
             sslBillID.Text = "单据号：" + billNo + "                              ";
             sslOperator.Text = "操作员：" + Environment.MachineName;
 
-            DisplayPlWailt();
+            this.VisibleWailt(true);
             DataTable billTable = wave.ImportData(BillString, billNo).Tables["DETAIL"];
             InTask = true;
             if (billTable != null && billTable.Rows.Count != 0)
             {
                 dgvMain.DataSource = billTable;
                 InTask = false;
-                ClosePlWailt();
+                this.VisibleWailt(false);
+
+                double sum = 0;
+                foreach (DataRow row in billTable.Rows)
+                {
+                    sum += double.Parse(row["bb_handle_num"].ToString());
+                }
+                string billType = "";
+                switch (BillTypes)
+                {
+                    case "1": billType = "上架清单"; break;
+                    case "2": billType = "盘点清单"; break;
+                    case "3": billType = "移位清单"; break;
+                    case "4": billType = "下架清单"; break;
+                    default: billType = "异常单据"; break;
+                }
+                THOKUtil.ShowInfo("当前【" + billType + "】订单总数量：" + sum);
             }
             else
             {
                 dgvMain.DataSource = null;
                 InTask = false;
-                ClosePlWailt();
-                THOKUtil.ShowError("没有数据！");
+                this.VisibleWailt(false);
+                THOKUtil.ShowError("当前没有数据！");
             }
         }
-
-        //读取RFID
-        private string getRfidCode()
-        {
-            List<string> listRfid = new List<string>();
-            try
-            {
-                DisplayPlWailt();
-                listRfid = rRfid.LoadTagList(port, 115200, out errInfo);
-                Application.DoEvents();
-                if(listRfid.Count>0)
-                    RfidCode = listRfid[0].ToString();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message + "," + RfidCode);
-            }
-            return RfidCode;
-        }
-
         private string getBrandInfo()
         {
             List<string> listRfid = new List<string>();
-            DisplayPlWailt();
+            this.VisibleWailt(true);
             string brandInfo = string.Empty;
             try
             {
@@ -338,16 +387,18 @@ namespace THOK.WES.View
             return brandInfo;
         }
 
-        public void DisplayPlWailt()
+        public void VisibleWailt(bool b)
         {
-            this.plWailt.Visible = true;
-            this.plWailt.Left = (this.dgvMain.Width - this.plWailt.Width) / 2;
-            this.plWailt.Top = (this.dgvMain.Height - this.plWailt.Height) / 2;
-        }
-
-        public void ClosePlWailt()
-        {
-            this.plWailt.Visible = false;
+            if (b == true)
+            {
+                this.plWailt.Visible = true;
+                this.plWailt.Left = (this.dgvMain.Width - this.plWailt.Width) / 2;
+                this.plWailt.Top = (this.dgvMain.Height - this.plWailt.Height) / 2;
+            }
+            else
+            {
+                this.plWailt.Visible = false;
+            }
         }
 
         private DataSet GenerateEmptyTables()
@@ -379,24 +430,6 @@ namespace THOK.WES.View
 
             return ds;
         }
-
-        private string ScanningRFID()
-        {
-            try
-            {
-                //if (BillTypes == "1")
-                //{
-                    return this.getRfidCode();
-                //}
-            }
-            catch (Exception ex)
-            {
-                ClosePlWailt();
-                THOKUtil.ShowError("扫描读取托盘信息出错，原因：" + ex.Message);
-            }
-            return null;
-        }
-
         private void btnOpType_Click(object sender, EventArgs e)
         {
             if (btnOpType.Text != "正常")
