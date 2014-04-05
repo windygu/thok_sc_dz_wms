@@ -258,7 +258,7 @@ namespace THOK.WES.View
                             {
                                 THOKUtil.ShowError("÷¥––¿À≥±confirmData ß∞‹£°‘≠“Ú£∫" + ex.Message);
                                 this.VisibleWailt(false);
-                                break;
+                                return;
                             }
                         }
                         else
