@@ -238,6 +238,7 @@ namespace THOK.WES.View
                                         {
                                             wave.confirmData(ds.Tables["DETAIL"], BillTypes);
                                             THOKUtil.ShowInfo("操作完成");
+                                            this.RefreshData();
                                         }
                                         catch (Exception ex)
                                         {
@@ -264,7 +265,7 @@ namespace THOK.WES.View
                         else
                         {
                             this.VisibleWailt(false);
-                            break;
+                            return;
                         }
                     }
                     this.VisibleWailt(false);
@@ -282,8 +283,6 @@ namespace THOK.WES.View
                 this.VisibleWailt(false);
                 return;
             }
-
-            RefreshData();
         }
 
         //读取RFID
