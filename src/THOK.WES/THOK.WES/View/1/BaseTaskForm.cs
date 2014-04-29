@@ -170,7 +170,7 @@ namespace THOK.WES.View
                 }
                 else
                 {
-                    THOKUtil.ShowError("该订单不是[主储区]或[零条烟区]");
+                    THOKUtil.ShowError("浪潮给的<bb_area_type>是：" + bb_area_type + ",注释 0:主储存区,1:零件烟区,2:零条烟区");
                     this.VisibleWailt(false);
                     return;
                 }
