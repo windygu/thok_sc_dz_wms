@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THOK.WES", "THOK.WES\THOK.WES.csproj", "{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THOK.Services", "THOK.Services\THOK.Services.csproj", "{536F6C86-8680-4D43-B671-11E2F34B325D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E709547-1EC9-47E4-8083-8EFB6FEF75B7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{536F6C86-8680-4D43-B671-11E2F34B325D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536F6C86-8680-4D43-B671-11E2F34B325D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536F6C86-8680-4D43-B671-11E2F34B325D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536F6C86-8680-4D43-B671-11E2F34B325D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
